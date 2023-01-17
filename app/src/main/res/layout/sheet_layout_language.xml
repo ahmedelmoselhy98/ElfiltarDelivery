@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_bottom_sheet"
+        android:orientation="vertical"
+        android:paddingVertical="@dimen/_10sdp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/_10sdp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/choose_language"
+                android:textColor="@color/text_color_black"
+                android:textSize="@dimen/_15ssp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/btn_done"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/public_done"
+                android:textColor="@color/text_color_primary"
+                android:textSize="@dimen/_15ssp" />
+        </LinearLayout>
+
+        <View style="@style/LineStyle" />
+
+        <FrameLayout
+            android:id="@+id/section_english"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/_10sdp">
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/cb_english"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_gravity="end|center"
+                android:button="@drawable/selector_checkbox"
+                android:textColor="@color/text_color_grey" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center"
+                android:elevation="@dimen/_5sdp"
+                android:padding="@dimen/_5sdp"
+                android:text="English"
+                android:textAlignment="viewStart"
+                android:textSize="@dimen/_15ssp" />
+        </FrameLayout>
+
+        <View style="@style/LineStyle" />
+
+        <FrameLayout
+            android:id="@+id/section_arabic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/_10sdp">
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/cb_arabic"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_gravity="end|center"
+                android:button="@drawable/selector_checkbox"
+                android:textColor="@color/text_color_grey" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center"
+                android:elevation="@dimen/_5sdp"
+                android:padding="@dimen/_5sdp"
+                android:text="اللغة العربية"
+                android:textAlignment="viewStart"
+                android:textSize="@dimen/_15ssp" />
+        </FrameLayout>
+    </LinearLayout>
+</layout>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/transparent"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/startIconIV"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_gravity="center"
+        android:layout_marginEnd="@dimen/_6sdp"
+        android:visibility="gone"
+        app:tint="@color/icon_tint_grey" />
+
+    <TextView
+        android:id="@+id/headerTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_5sdp"
+        android:layout_weight="1"
+        android:gravity="start|center"
+        android:textAlignment="viewStart"
+        android:textColor="@color/text_color_grey"
+        android:textColorHint="@color/text_color_grey"
+        android:textSize="@dimen/_15ssp"
+        tools:text="@string/app_name" />
+
+    <ImageView
+        android:id="@+id/listIndicatorIV"
+        android:layout_width="@dimen/_15sdp"
+        android:layout_height="@dimen/_15sdp"
+        android:layout_gravity="center"
+        app:tint="@color/icon_tint_grey"
+        tools:background="@drawable/icon_arrow_right" />
+</LinearLayout>

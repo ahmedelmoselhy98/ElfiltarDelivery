@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.elmoselhy.elfiltardelivery.business.delivery.models.FilterCandleModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/_5sdp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_title"
+            setText='@{@string/candle_number+" ( "+item.candle_number+" ) "}'
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAlignment="viewStart"
+            android:textColor="@color/text_color_black"
+            android:textSize="@dimen/_14ssp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/icon_calendar"
+                android:drawablePadding="@dimen/_5sdp"
+                android:drawableTint="@color/icon_tint_primary"
+                android:text="@string/changing_period"
+                android:textAlignment="viewStart"
+                android:textColor="@color/text_color_grey"
+                android:textSize="@dimen/_14ssp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_weight="1"
+                android:background="@drawable/background_stroke_rectangle_grey">
+
+                <com.elmoselhy.elfiltardelivery.commons.customcomponent.editText.normal.TextInput
+                    android:id="@+id/et_change_after"
+                    setText='@{""+item.change_after}'
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_1sdp"
+                    android:layout_weight="1"
+                    android:background="@color/transparent"
+                    android:hint="0"
+                    android:inputType="number"
+                    android:padding="@dimen/_8sdp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/background_stroke_rectangle_grey"
+                    android:backgroundTint="@color/background_grey"
+                    android:baselineAligned="false"
+                    android:padding="@dimen/_10sdp"
+                    android:text="@string/day"
+                    android:textColor="@color/text_color_white" />
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/iv_more"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_5sdp"
+                android:text="@string/ok"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+    </LinearLayout>
+</layout>

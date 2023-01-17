@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        tools:context=".business.authentication.activities.ResetPasswordActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/_16sdp">
+
+            <include
+                android:id="@+id/app_bar"
+                layout="@layout/app_bar"
+                app:title="@{@string/contact_us}" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:src="@drawable/image_contact_us" />
+
+
+            <com.elmoselhy.elfiltardelivery.commons.customcomponent.editText.normal.TextInput
+                android:id="@+id/et_name"
+                style="@style/BoxEditTextGrey"
+                android:drawableStart="@drawable/icon_user_outline_circle"
+                android:drawablePadding="@dimen/_10sdp"
+                android:drawableTint="@color/icon_tint_primary"
+                android:hint="@string/public_name"
+                android:inputType="text" />
+
+
+            <com.elmoselhy.elfiltardelivery.commons.customcomponent.editText.normal.PhoneInput
+                android:id="@+id/et_phone"
+                style="@style/BoxEditTextGrey"
+                android:drawableStart="@drawable/icon_phone_outline"
+                android:drawablePadding="@dimen/_10sdp"
+                android:drawableTint="@color/icon_tint_primary"
+                android:hint="@string/public_phone_number"
+                android:inputType="phone" />
+
+            <com.elmoselhy.elfiltardelivery.commons.customcomponent.editText.normal.TextInput
+                android:id="@+id/et_address"
+                style="@style/BoxEditTextGrey"
+                android:drawableStart="@drawable/icon_feather"
+                android:drawablePadding="@dimen/_10sdp"
+                android:drawableTint="@color/icon_tint_primary"
+                android:hint="@string/public_address"
+                android:inputType="text" />
+
+
+            <com.elmoselhy.elfiltardelivery.commons.customcomponent.editText.normal.TextInput
+                android:id="@+id/et_message"
+                style="@style/BoxEditTextGrey"
+                android:layout_weight="1"
+                android:drawableStart="@drawable/icon_feather"
+                android:drawablePadding="@dimen/_10sdp"
+                android:drawableTint="@color/icon_tint_primary"
+                android:hint="@string/public_message"
+                android:inputType="text" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_send"
+                style="@style/ButtonContainedPrimary"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="@string/public_send" />
+        </LinearLayout>
+
+    </ScrollView>
+</layout>

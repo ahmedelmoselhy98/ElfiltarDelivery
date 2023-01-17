@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.elmoselhy.elfiltardelivery.base.BaseViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            layout="@layout/loading_layout"
+            app:viewModel="@{viewModel}" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/background_screen"
+            android:orientation="vertical"
+            tools:context=".business.general.activities.NotificationActivity">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:background="@color/white">
+
+                <include
+                    android:id="@+id/app_bar"
+                    layout="@layout/app_bar"
+                    app:title="@{@string/my_clients}" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_add_client"
+                    style="@style/ButtonContainedPrimary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:minWidth="@dimen/_130sdp"
+                    android:paddingHorizontal="@dimen/_10sdp"
+                    android:paddingVertical="8dp"
+                    android:text="@string/add_client"
+                    android:textSize="@dimen/_16ssp"
+                    app:cornerRadius="@dimen/_10sdp"
+                    app:icon="@drawable/icon_plus_circle"
+                    app:iconGravity="textStart"
+                    app:iconPadding="@dimen/_5sdp"
+                    app:iconSize="@dimen/_15sdp" />
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/all_clients"
+                android:id="@+id/tv_all_clients"
+                android:textSize="@dimen/_18ssp"
+                android:drawablePadding="@dimen/_8sdp"
+                android:background="@drawable/background_stroke_rectangle_primary"
+                android:padding="@dimen/_8sdp"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:drawableEnd="@drawable/icon_arrow_right"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:background="@drawable/background_solid_white_stroke_rectangle_grey"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:padding="@dimen/_5sdp"
+                    android:id="@+id/iv_search"
+                    android:src="@drawable/icon_search" />
+
+                <com.elmoselhy.elfiltardelivery.commons.customcomponent.editText.normal.TextInput
+                    android:id="@+id/et_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_1sdp"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:hint="@string/search_by_name_or_phone"
+                    android:padding="@dimen/_10sdp"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/text_color_black"
+                    android:textColorHint="@color/hint_color_grey" />
+
+                <ImageView
+                    android:id="@+id/iv_filter"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:padding="@dimen/_6sdp"
+                    android:src="@drawable/icon_data_filter" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:paddingHorizontal="@dimen/_10sdp"
+                    tools:listitem="@layout/item_layout_client" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/there_are_no_follow_ups"
+                    android:textColor="@color/text_color_black"
+                    android:id="@+id/tv_empty"
+                    android:visibility="gone"
+                    android:textSize="@dimen/_18ssp"
+                    android:textStyle="bold"/>
+            </FrameLayout>
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:id="@+id/view_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_1sdp"
+        android:layout_marginVertical="@dimen/_5sdp"
+        android:background="@drawable/background_stroke_rectangle_primary"
+        android:elevation="@dimen/_2sdp"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/_10sdp"
+            android:padding="@dimen/_8sdp"
+            android:textAlignment="textStart"
+            android:textColor="@color/text_color_black"
+            android:textSize="@dimen/_14ssp"
+            android:textStyle="bold" />
+
+        <net.cachapa.expandablelayout.ExpandableLayout
+            android:id="@+id/view_expand"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:el_expanded="false">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp">
+
+                <LinearLayout
+                    android:id="@+id/content"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="@dimen/_10sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="3:2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+
+                    <com.elmoselhy.elfiltardelivery.commons.customcomponent.editText.normal.TextInput
+                        android:id="@+id/et_search"
+                        style="@style/BoxEditTextGrey"
+                        android:layout_height="@dimen/_40sdp"
+                        android:drawableStart="@drawable/icon_search"
+                        android:hint="@string/search"
+                        android:inputType="text" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:itemCount="4"
+                        tools:listitem="@layout/item_layout_selection" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_empty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/_10sdp"
+                    android:text="@string/public_no_results"
+                    android:textColor="@color/text_color_black"
+                    android:textSize="@dimen/_13ssp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </net.cachapa.expandablelayout.ExpandableLayout>
+    </LinearLayout>
+</layout>

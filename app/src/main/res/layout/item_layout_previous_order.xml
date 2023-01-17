@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.elmoselhy.elfiltardelivery.business.delivery.models.OrderModel" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginVertical="@dimen/_5sdp"
+        app:cardCornerRadius="@dimen/_10sdp"
+        app:cardElevation="@dimen/_5sdp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_solid_stroke_rectangle_primary"
+            android:backgroundTint="@color/white"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:paddingVertical="@dimen/_5sdp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/iv_user"
+                    setImage="@{item.user.image}"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_gravity="center"
+                    android:layout_height="@dimen/_50sdp"
+                    app:riv_corner_radius="@dimen/_30sdp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_10sdp">
+
+                    <TextView
+                        setText='@{item.user.first_name +" "+item.user.last_name}'
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_color_black"
+                        android:textSize="@dimen/_16ssp" />
+
+                    <TextView
+                        bindServerDate="@{item.created_at}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/_8sdp"
+                        android:textColor="@color/text_color_black"
+                        android:textSize="@dimen/_14ssp" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                setText='@{""+item.price}'
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginVertical="@dimen/_8sdp"
+                android:drawableStart="@drawable/icon_money"
+                android:drawablePadding="@dimen/_5sdp"
+                android:drawableTint="@color/icon_tint_primary"
+                android:textAlignment="viewStart"
+                android:textColor="@color/text_color_black"
+                android:textSize="@dimen/_16ssp" />
+
+            <TextView
+                setText="@{item.user.address}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginVertical="@dimen/_8sdp"
+                android:drawableStart="@drawable/icon_location_fill"
+                android:drawablePadding="@dimen/_5sdp"
+                android:drawableTint="@color/icon_tint_primary"
+                android:textAlignment="viewStart"
+                android:textColor="@color/text_color_black"
+                android:textSize="@dimen/_16ssp" />
+
+            <TextView
+                setText="@{item.text}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:drawableStart="@drawable/icon_notes"
+                android:drawablePadding="@dimen/_5sdp"
+                android:drawableTint="@color/icon_tint_primary"
+                android:textAlignment="viewStart"
+                android:textColor="@color/text_color_black"
+                android:textSize="@dimen/_16ssp" />
+
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</layout>

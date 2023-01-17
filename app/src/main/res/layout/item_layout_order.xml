@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.elmoselhy.elfiltardelivery.business.delivery.models.OrderModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:background="@drawable/background_solid_white_stroke_rectangle_grey"
+        android:orientation="vertical"
+        android:padding="@dimen/_8sdp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                bindServerDate="@{item.created_at}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/icon_calendar_date"
+                android:drawablePadding="@dimen/_5sdp"
+                android:drawableTint="@color/icon_tint_primary"
+                android:textAlignment="viewStart"
+                android:textColor="@color/text_color_black"
+                android:textSize="@dimen/_14ssp"
+                android:textStyle="bold" />
+
+            <TextView
+                bindServerTime="@{item.created_at}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:drawableStart="@drawable/icon_clock"
+                android:drawablePadding="@dimen/_5sdp"
+                android:drawableTint="@color/icon_tint_primary"
+                android:textAlignment="viewStart"
+                android:textColor="@color/text_color_black"
+                android:textSize="@dimen/_14ssp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView
+            setText='@{item.user.first_name + " "+item.user.last_name }'
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_8sdp"
+            android:drawableStart="@drawable/icon_user_fill"
+            android:drawablePadding="@dimen/_5sdp"
+            android:drawableTint="@color/icon_tint_primary"
+            android:textAlignment="viewStart"
+            android:textColor="@color/text_color_black"
+            android:textSize="@dimen/_16ssp" />
+
+        <TextView
+            android:id="@+id/tv_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_8sdp"
+            android:drawableStart="@drawable/icon_location_fill"
+            android:drawablePadding="@dimen/_5sdp"
+            android:drawableTint="@color/icon_tint_primary"
+            android:textAlignment="viewStart"
+            android:textColor="@color/text_color_black"
+            android:textSize="@dimen/_16ssp" />
+
+        <TextView
+            setText="@{item.text}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/icon_notes"
+            android:drawablePadding="@dimen/_5sdp"
+            android:drawableTint="@color/icon_tint_primary"
+            android:textAlignment="viewStart"
+            android:textColor="@color/text_color_black"
+            android:textSize="@dimen/_16ssp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_reject"
+                style="@style/ButtonOutlineBlack"
+                android:layout_weight="1"
+                android:text="@string/public_reject"
+                android:textSize="@dimen/_16ssp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_details"
+                style="@style/ButtonContainedBlue"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_weight="1"
+                android:text="@string/public_details"
+                android:textSize="@dimen/_16ssp"
+                app:icon="@drawable/icon_arrow_right"
+                app:iconGravity="textEnd" />
+
+        </LinearLayout>
+    </LinearLayout>
+</layout>

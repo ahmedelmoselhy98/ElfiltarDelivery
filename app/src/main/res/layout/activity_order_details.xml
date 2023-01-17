@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.elmoselhy.elfiltardelivery.business.delivery.models.OrderModel" />
+
+        <variable
+            name="viewModel"
+            type="com.elmoselhy.elfiltardelivery.base.BaseViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <include
+            layout="@layout/loading_layout"
+            app:viewModel="@{viewModel}" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:context=".business.general.activities.NotificationActivity">
+
+            <include
+                android:id="@+id/app_bar"
+                layout="@layout/app_bar"
+                app:title="@{@string/order_details}" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/iv_status_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:src="@drawable/image_order_details1" />
+
+                    <FrameLayout
+                        android:id="@+id/section_user_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_10sdp">
+
+                        <com.makeramen.roundedimageview.RoundedImageView
+                            setImage="@{item.user.image}"
+                            android:layout_width="@dimen/_80sdp"
+                            android:layout_height="@dimen/_80sdp"
+                            android:layout_gravity="top|center"
+                            android:background="@drawable/background_stroke_circle_primary"
+                            android:elevation="@dimen/_1sdp"
+                            android:padding="@dimen/_1sdp"
+                            android:src="@drawable/placeholder_user"
+                            app:riv_corner_radius="@dimen/_40sdp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:layout_marginTop="@dimen/_40sdp"
+                            android:background="@drawable/background_solid_stroke_rectangle_primary"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:paddingTop="@dimen/_10sdp">
+
+                            <TextView
+                                android:id="@+id/tv_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_40sdp"
+                                android:textColor="@color/text_color_black"
+                                android:textSize="@dimen/_18ssp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tv_address"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="start|center"
+                                android:layout_marginHorizontal="@dimen/_10sdp"
+                                android:layout_marginVertical="@dimen/_8sdp"
+                                android:drawableStart="@drawable/icon_location_fill"
+                                android:drawablePadding="@dimen/_8sdp"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/text_color_black"
+                                android:textSize="@dimen/_16ssp" />
+
+                            <TextView
+                                setText="@{item.text}"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="start|center"
+                                android:layout_marginHorizontal="@dimen/_10sdp"
+                                android:layout_marginBottom="@dimen/_10sdp"
+                                android:drawableStart="@drawable/icon_notes"
+                                android:drawablePadding="@dimen/_8sdp"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/text_color_black"
+                                android:textSize="@dimen/_16ssp" />
+
+                            <LinearLayout
+                                android:id="@+id/section_contacts"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/_10sdp"
+                                android:visibility="gone"
+                                >
+
+                                <com.google.android.material.button.MaterialButton
+                                    android:id="@+id/btn_call"
+                                    style="@style/ButtonOutlineBlue"
+                                    android:layout_marginEnd="@dimen/_8sdp"
+                                    android:layout_weight="1"
+                                    android:text="@string/call"
+                                    android:textColor="@color/text_color_black"
+                                    app:icon="@drawable/call"
+                                    app:iconGravity="textStart"
+                                    app:iconTint="@null" />
+
+                                <com.google.android.material.button.MaterialButton
+                                    android:id="@+id/btn_whats_app"
+                                    style="@style/ButtonOutlineGreen"
+                                    android:layout_marginEnd="@dimen/_8sdp"
+                                    android:layout_weight="1"
+                                    android:text="@string/whatsapp"
+                                    android:textColor="@color/text_color_black"
+                                    app:icon="@drawable/whats_app"
+                                    app:iconGravity="textStart"
+                                    app:iconTint="@null" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+                    </FrameLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/section_cost"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_40sdp"
+                        android:background="@drawable/background_solid_stroke_rectangle_primary"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_10sdp"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/cost_of_maintenance"
+                            android:textColor="@color/text_color_black"
+                            android:textSize="@dimen/_18sdp"
+                            android:textStyle="bold" />
+
+                        <com.elmoselhy.elfiltardelivery.commons.customcomponent.editText.normal.TextInput
+                            android:id="@+id/et_cost"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="150.0 ج"
+                            android:inputType="numberDecimal" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/section_cancel_reason"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_40sdp"
+                        android:background="@drawable/background_solid_stroke_rectangle_primary"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_10sdp"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/reason_for_cancellation"
+                            android:textColor="@color/text_color_black"
+                            android:textSize="@dimen/_15sdp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            setText="@{item.reason_for_cancellation}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/text_color_black"
+                            android:textSize="@dimen/_14sdp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <FrameLayout
+                        android:id="@+id/frame_order_actions"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_10sdp">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_finish"
+                            style="@style/ButtonContainedPrimary"
+                            android:layout_weight="1"
+                            android:text="@string/finish"
+                            android:visibility="gone" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_on_the_way"
+                            style="@style/ButtonContainedPrimary"
+                            android:layout_weight="1"
+                            android:text="@string/on_the_way"
+                            android:visibility="gone" />
+
+
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:id="@+id/section_pending_actions"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_reject"
+                            style="@style/ButtonOutlinePrimary"
+                            android:layout_marginEnd="@dimen/_8sdp"
+                            android:layout_weight="1"
+                            android:text="@string/public_reject" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_accept"
+                            style="@style/ButtonContainedPrimary"
+                            android:layout_weight="1"
+                            android:text="@string/public_accept" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_order_canceled"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:background="@drawable/background_stroke_rectangle_primary"
+                        android:padding="@dimen/_10sdp"
+                        android:text="@string/order_canceled"
+                        android:textColor="@color/primary"
+                        android:textSize="@dimen/_16ssp"
+                        android:visibility="gone" />
+
+
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

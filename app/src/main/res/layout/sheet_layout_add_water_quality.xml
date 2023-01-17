@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_bottom_sheet"
+            android:orientation="vertical"
+            android:padding="@dimen/_16sdp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:text="@string/water_quality"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/text_color_black"
+                    android:textSize="@dimen/_16ssp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/iv_close"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:src="@drawable/icon_close_circle_fill" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:text="@string/arabic_name"
+                android:textAlignment="viewStart"
+                android:textColor="@color/text_color_black"
+                android:textSize="@dimen/_14ssp"
+                android:textStyle="bold" />
+
+            <com.elmoselhy.elfiltardelivery.commons.customcomponent.editText.normal.TextInput
+                android:id="@+id/et_name_ar"
+                style="@style/BoxEditTextGrey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/arabic_name"
+                android:textAlignment="viewStart"
+                android:textColorHint="@color/hint_color_grey"
+                android:textSize="@dimen/_15ssp" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:text="@string/english_name"
+                android:textAlignment="viewStart"
+                android:textColor="@color/text_color_black"
+                android:textSize="@dimen/_14ssp"
+                android:textStyle="bold" />
+            <com.elmoselhy.elfiltardelivery.commons.customcomponent.editText.normal.TextInput
+                android:id="@+id/et_name_en"
+                style="@style/BoxEditTextGrey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/english_name"
+                android:textAlignment="viewStart"
+                android:textColorHint="@color/hint_color_grey"
+                android:textSize="@dimen/_15ssp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_submit"
+                style="@style/ButtonContainedPrimary"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="@string/public_submit" />
+        </LinearLayout>
+    </RelativeLayout>
+</layout>

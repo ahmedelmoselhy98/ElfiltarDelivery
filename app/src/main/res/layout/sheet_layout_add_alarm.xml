@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_bottom_sheet"
+            android:orientation="vertical"
+            android:padding="@dimen/_16sdp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:text="@string/add_alarm"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/text_color_black"
+                    android:textSize="@dimen/_16ssp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/iv_close"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:src="@drawable/icon_close_circle_fill" />
+            </LinearLayout>
+
+            <com.elmoselhy.elfiltardelivery.commons.customcomponent.textview.DateTextView
+                android:id="@+id/tv_day"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_weight="1"
+                android:background="@drawable/background_stroke_rectangle_grey"
+                android:drawableEnd="@drawable/icon_calendar"
+                android:drawableTint="@color/icon_tint_grey"
+                android:hint="@string/day"
+                android:textSize="@dimen/_15ssp"
+                android:padding="@dimen/_10sdp"
+                android:textColorHint="@color/hint_color_grey" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.elmoselhy.elfiltardelivery.commons.customcomponent.editText.normal.TextInput
+                    android:id="@+id/et_notes"
+                    style="@style/BoxEditTextGrey"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:gravity="start|top"
+                    android:textSize="@dimen/_15ssp"
+                    android:hint="@string/note"
+                    android:textAlignment="viewStart"
+                    android:textColorHint="@color/hint_color_grey"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="2:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_confirm"
+                style="@style/ButtonContainedPrimary"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="@string/public_confirm" />
+        </LinearLayout>
+    </RelativeLayout>
+</layout>

@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.elmoselhy.elfiltardelivery.business.delivery.models.ClientModel" />
+
+
+        <variable
+            name="numberOfStages"
+            type="Integer" />
+
+        <variable
+            name="viewModel"
+            type="com.elmoselhy.elfiltardelivery.base.BaseViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            layout="@layout/loading_layout"
+            app:viewModel="@{viewModel}" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/background_screen"
+            android:fillViewport="true"
+            tools:context=".business.authentication.activities.ResetPasswordActivity">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <include
+                    android:id="@+id/app_bar"
+                    layout="@layout/app_bar"
+                    app:title="@{@string/add_client}" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:drawableStart="@drawable/icon_user_fill"
+                    android:drawablePadding="@dimen/_8sdp"
+                    android:drawableTint="@color/icon_tint_primary"
+                    android:text="@string/public_name"
+                    android:textColor="@color/text_color_black"
+                    android:textSize="@dimen/_16ssp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp">
+
+                    <com.elmoselhy.elfiltardelivery.commons.customcomponent.editText.normal.TextInput
+                        android:id="@+id/et_first_name"
+                        style="@style/BoxEditTextGrey"
+                        setText="@{item.first_name}"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_weight="1"
+                        android:hint="@string/public_first_name"
+                        android:inputType="text" />
+
+                    <com.elmoselhy.elfiltardelivery.commons.customcomponent.editText.normal.TextInput
+                        android:id="@+id/et_last_name"
+                        style="@style/BoxEditTextGrey"
+                        setText="@{item.last_name}"
+                        android:layout_weight="1"
+                        android:hint="@string/public_last_name"
+                        android:inputType="text" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:drawableStart="@drawable/icon_phone_fill"
+                    android:drawablePadding="@dimen/_8sdp"
+                    android:drawableTint="@color/icon_tint_primary"
+                    android:text="@string/public_phone_number"
+                    android:textColor="@color/text_color_black"
+                    android:textSize="@dimen/_16ssp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp">
+
+                    <com.hbb20.CountryCodePicker
+                        android:id="@+id/country_code_picker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:background="@drawable/background_stroke_rectangle_grey"
+                        android:gravity="center_vertical"
+                        app:ccp_defaultPhoneCode="20"
+                        app:ccp_showNameCode="false"
+                        app:ccp_showPhoneCode="true" />
+
+                    <com.elmoselhy.elfiltardelivery.commons.customcomponent.editText.normal.PhoneInput
+                        android:id="@+id/et_phone"
+                        style="@style/BoxEditTextGrey"
+                        setText="@{item.phone}"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:hint="@string/public_phone_number"
+                        android:inputType="phone" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:drawableStart="@drawable/facebook"
+                    android:drawablePadding="@dimen/_8sdp"
+                    android:drawableTint="@color/icon_tint_primary"
+                    android:text="@string/facebook_link"
+                    android:textColor="@color/text_color_black"
+                    android:textSize="@dimen/_16ssp" />
+
+                <com.elmoselhy.elfiltardelivery.commons.customcomponent.editText.normal.TextInput
+                    android:id="@+id/et_facebook_link"
+                    style="@style/BoxEditTextGrey"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:hint="@string/facebook_link"
+                    android:inputType="text" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:drawableStart="@drawable/icon_location_fill"
+                    android:drawablePadding="@dimen/_8sdp"
+                    android:drawableTint="@color/icon_tint_primary"
+                    android:text="@string/public_location"
+                    android:textColor="@color/text_color_black"
+                    android:textSize="@dimen/_16ssp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_weight="1">
+
+                        <include
+                            android:id="@+id/include_selection_governorate"
+                            layout="@layout/include_drop_down_expandable_recycler" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_weight="1">
+
+                        <include
+                            android:id="@+id/include_selection_city"
+                            layout="@layout/include_drop_down_expandable_recycler" />
+
+                    </FrameLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:drawableStart="@drawable/icon_location_fill"
+                    android:drawablePadding="@dimen/_8sdp"
+                    android:drawableTint="@color/icon_tint_primary"
+                    android:text="@string/public_address"
+                    android:textColor="@color/text_color_black"
+                    android:textSize="@dimen/_16ssp" />
+
+                <com.elmoselhy.elfiltardelivery.commons.customcomponent.editText.normal.TextInput
+                    android:id="@+id/et_location"
+                    style="@style/BoxEditTextGrey"
+                    setText="@{item.address}"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:hint="مثال: القاهره شارع الجماعة"
+                    android:inputType="text" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:drawableStart="@drawable/icon_water"
+                    android:drawablePadding="@dimen/_8sdp"
+                    android:drawableTint="@color/icon_tint_primary"
+                    android:text="@string/number_of_stages"
+                    android:textColor="@color/text_color_black"
+                    android:textSize="@dimen/_16ssp" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_weight="1">
+
+                    <include
+                        android:id="@+id/include_selection_number_of_stages"
+                        layout="@layout/include_drop_down_expandable_recycler" />
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:drawableStart="@drawable/icon_water"
+                    android:drawablePadding="@dimen/_8sdp"
+                    android:drawableTint="@color/icon_tint_primary"
+                    android:text="@string/water_quality"
+                    android:textColor="@color/text_color_black"
+                    android:textSize="@dimen/_16ssp" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_weight="1">
+
+                    <include
+                        android:id="@+id/include_selection_water_quality"
+                        layout="@layout/include_drop_down_expandable_recycler" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="هل تتذكر تاريخ اخر تغيير ؟"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/text_color_black"
+                        android:textSize="@dimen/_16ssp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/icon_tint_primary" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/section_candle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        setViewVisible="@{numberOfStages >=1}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/_5sdp"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="الشمعة الاولى"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/text_color_black"
+                            android:textSize="@dimen/_16ssp" />
+
+                        <com.elmoselhy.elfiltardelivery.commons.customcomponent.textview.DateTextView
+                            android:id="@+id/tv_date_1"
+                            android:layout_width="@dimen/_140sdp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/background_stroke_rectangle_grey"
+                            android:drawableEnd="@drawable/icon_calendar"
+                            android:drawablePadding="@dimen/_8sdp"
+                            android:drawableTint="@color/icon_tint_grey"
+                            android:hint="@string/day"
+                            android:padding="@dimen/_10sdp"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/text_color_grey"
+                            android:textSize="@dimen/_14ssp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        setViewVisible="@{numberOfStages >=2}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/_5sdp"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="الشمعة الثانية"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/text_color_black"
+                            android:textSize="@dimen/_16ssp" />
+
+                        <com.elmoselhy.elfiltardelivery.commons.customcomponent.textview.DateTextView
+                            android:id="@+id/tv_date_2"
+                            android:layout_width="@dimen/_140sdp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/background_stroke_rectangle_grey"
+                            android:drawableEnd="@drawable/icon_calendar"
+                            android:drawablePadding="@dimen/_8sdp"
+                            android:drawableTint="@color/icon_tint_grey"
+                            android:hint="@string/day"
+                            android:padding="@dimen/_10sdp"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/text_color_grey"
+                            android:textSize="@dimen/_14ssp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        setViewVisible="@{numberOfStages >=3}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/_5sdp"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="الشمعة الثالثة"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/text_color_black"
+                            android:textSize="@dimen/_16ssp" />
+
+                        <com.elmoselhy.elfiltardelivery.commons.customcomponent.textview.DateTextView
+                            android:id="@+id/tv_date_3"
+                            android:layout_width="@dimen/_140sdp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/background_stroke_rectangle_grey"
+                            android:drawableEnd="@drawable/icon_calendar"
+                            android:drawablePadding="@dimen/_8sdp"
+                            android:drawableTint="@color/icon_tint_grey"
+                            android:hint="@string/day"
+                            android:padding="@dimen/_10sdp"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/text_color_grey"
+                            android:textSize="@dimen/_14ssp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        setViewVisible="@{numberOfStages >=4}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/_5sdp"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="الشمعة الرابعة"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/text_color_black"
+                            android:textSize="@dimen/_16ssp" />
+
+                        <com.elmoselhy.elfiltardelivery.commons.customcomponent.textview.DateTextView
+                            android:id="@+id/tv_date_4"
+                            android:layout_width="@dimen/_140sdp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/background_stroke_rectangle_grey"
+                            android:drawableEnd="@drawable/icon_calendar"
+                            android:drawablePadding="@dimen/_8sdp"
+                            android:drawableTint="@color/icon_tint_grey"
+                            android:hint="@string/day"
+                            android:padding="@dimen/_10sdp"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/text_color_grey"
+                            android:textSize="@dimen/_14ssp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        setViewVisible="@{numberOfStages >=5}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/_5sdp"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="الشمعة الخامسة"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/text_color_black"
+                            android:textSize="@dimen/_16ssp" />
+
+                        <com.elmoselhy.elfiltardelivery.commons.customcomponent.textview.DateTextView
+                            android:id="@+id/tv_date_5"
+                            android:layout_width="@dimen/_140sdp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/background_stroke_rectangle_grey"
+                            android:drawableEnd="@drawable/icon_calendar"
+                            android:drawablePadding="@dimen/_8sdp"
+                            android:drawableTint="@color/icon_tint_grey"
+                            android:hint="@string/day"
+                            android:padding="@dimen/_10sdp"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/text_color_grey"
+                            android:textSize="@dimen/_14ssp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        setViewVisible="@{numberOfStages >=6}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/_5sdp"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="الشمعة السادسة"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/text_color_black"
+                            android:textSize="@dimen/_16ssp" />
+
+                        <com.elmoselhy.elfiltardelivery.commons.customcomponent.textview.DateTextView
+                            android:id="@+id/tv_date_6"
+                            android:layout_width="@dimen/_140sdp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/background_stroke_rectangle_grey"
+                            android:drawableEnd="@drawable/icon_calendar"
+                            android:drawablePadding="@dimen/_8sdp"
+                            android:drawableTint="@color/icon_tint_grey"
+                            android:hint="@string/day"
+                            android:padding="@dimen/_10sdp"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/text_color_grey"
+                            android:textSize="@dimen/_14ssp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        setViewVisible="@{numberOfStages >=7}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/_5sdp"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="الشمعة السابعة"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/text_color_black"
+                            android:textSize="@dimen/_16ssp" />
+
+                        <com.elmoselhy.elfiltardelivery.commons.customcomponent.textview.DateTextView
+                            android:id="@+id/tv_date_7"
+                            android:layout_width="@dimen/_140sdp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/background_stroke_rectangle_grey"
+                            android:drawableEnd="@drawable/icon_calendar"
+                            android:drawablePadding="@dimen/_8sdp"
+                            android:drawableTint="@color/icon_tint_grey"
+                            android:hint="@string/day"
+                            android:padding="@dimen/_10sdp"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/text_color_grey"
+                            android:textSize="@dimen/_14ssp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginVertical="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:text="@string/choose_status"
+                        android:textColor="@color/text_color_black"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/active_inactive"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/text_color_grey"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <com.kyleduo.switchbutton.SwitchButton
+                        android:id="@+id/switch_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/_2sdp"
+                        android:checked="@{item.status == 1?true:false}"
+                        app:kswBackColor="@color/switch_button_color"
+                        app:kswThumbColor="@color/white" />
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_add"
+                    style="@style/ButtonContainedPrimary"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="@string/add" />
+            </LinearLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

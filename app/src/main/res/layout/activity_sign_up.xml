@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.elmoselhy.elfiltardelivery.base.BaseViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <include
+            layout="@layout/loading_layout"
+            app:viewModel="@{viewModel}" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/background_screen"
+            android:fillViewport="true"
+            tools:context=".business.authentication.activities.ResetPasswordActivity">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <include
+                    android:id="@+id/app_bar"
+                    layout="@layout/app_bar"
+                    app:title="@{@string/public_sign_up}" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_10sdp">
+
+                    <TextView
+                        android:id="@+id/tv_company"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_weight="1"
+                        android:background="@drawable/background_solid_rectangle_primary"
+                        android:gravity="center"
+                        android:padding="@dimen/_10sdp"
+                        android:text="@string/company"
+                        android:textColor="@color/text_color_white" />
+
+                    <TextView
+                        android:id="@+id/tv_technical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/background_stroke_rectangle_grey"
+                        android:gravity="center"
+                        android:padding="@dimen/_10sdp"
+                        android:text="@string/technical"
+                        android:textColor="@color/text_color_grey" />
+
+                </LinearLayout>
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/iv_profile"
+                    android:layout_width="@dimen/_130sdp"
+                    android:layout_height="@dimen/_130sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:src="@drawable/placeholder_logo"
+                    app:riv_corner_radius="@dimen/_65sdp" />
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:drawableStart="@drawable/icon_user_fill"
+                    android:drawablePadding="@dimen/_8sdp"
+                    android:drawableTint="@color/icon_tint_primary"
+                    android:text="@string/company_name"
+                    android:textColor="@color/text_color_black"
+                    android:textSize="@dimen/_16ssp" />
+
+                <com.elmoselhy.elfiltardelivery.commons.customcomponent.editText.normal.TextInput
+                    android:id="@+id/et_name"
+                    style="@style/BoxEditTextGrey"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:hint="@string/company_name"
+                    android:inputType="text" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:drawableStart="@drawable/icon_phone_fill"
+                    android:drawablePadding="@dimen/_8sdp"
+                    android:drawableTint="@color/icon_tint_primary"
+                    android:text="@string/public_phone_number"
+                    android:textColor="@color/text_color_black"
+                    android:textSize="@dimen/_16ssp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp">
+
+                    <com.hbb20.CountryCodePicker
+                        android:id="@+id/country_code_picker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:background="@drawable/background_stroke_rectangle_grey"
+                        android:gravity="center_vertical"
+                        app:ccp_defaultPhoneCode="20"
+                        app:ccp_showNameCode="false"
+                        app:ccp_showPhoneCode="true" />
+
+                    <com.elmoselhy.elfiltardelivery.commons.customcomponent.editText.normal.PhoneInput
+                        android:id="@+id/et_phone"
+                        style="@style/BoxEditTextGrey"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:hint="@string/public_phone_number"
+                        android:inputType="phone" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/section_company_images"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:drawableStart="@drawable/icon_notes"
+                        android:drawablePadding="@dimen/_8sdp"
+                        android:text="@string/tax_registry_image"
+                        android:textColor="@color/text_color_black"
+                        android:textSize="@dimen/_13ssp" />
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/iv_tax_registry_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/placeholder_image_box"
+                        android:minHeight="@dimen/_125sdp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:drawableStart="@drawable/icon_notes"
+                        android:drawablePadding="@dimen/_8sdp"
+                        android:text="@string/commercial_registry_image"
+                        android:textColor="@color/text_color_black"
+                        android:textSize="@dimen/_13ssp" />
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/iv_commercial_registry_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/placeholder_image_box"
+                        android:minHeight="@dimen/_125sdp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/section_technical_images"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:drawableStart="@drawable/icon_notes"
+                        android:drawablePadding="@dimen/_8sdp"
+                        android:text="@string/identity_image"
+                        android:textColor="@color/text_color_black"
+                        android:textSize="@dimen/_13ssp" />
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/iv_identity_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/placeholder_image_box"
+                        android:minHeight="@dimen/_125sdp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:drawableStart="@drawable/icon_location_fill"
+                    android:drawablePadding="@dimen/_8sdp"
+                    android:drawableTint="@color/icon_tint_primary"
+                    android:text="@string/public_address"
+                    android:textColor="@color/text_color_black"
+                    android:textSize="@dimen/_16ssp" />
+
+                <com.elmoselhy.elfiltardelivery.commons.customcomponent.editText.normal.TextInput
+                    android:id="@+id/et_location"
+                    style="@style/BoxEditTextGrey"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:hint="مثال: القاهره شارع الجماعة"
+                    android:inputType="text" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:drawableStart="@drawable/icon_location_fill"
+                    android:drawablePadding="@dimen/_8sdp"
+                    android:drawableTint="@color/icon_tint_primary"
+                    android:text="@string/coverage_areas"
+                    android:textColor="@color/text_color_black"
+                    android:textSize="@dimen/_16ssp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_weight="1">
+
+                        <include
+                            android:id="@+id/include_selection_governorate"
+                            layout="@layout/include_drop_down_expandable_recycler" />
+
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_weight="1">
+
+                        <include
+                            android:id="@+id/include_selection_city"
+                            layout="@layout/include_drop_down_expandable_recycler" />
+
+                    </FrameLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:text="@string/selected_cities"
+                    android:textColor="@color/text_color_black"
+                    android:textSize="@dimen/_16ssp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:text="يمكنك اختيار حد اقصى 12 مدينة"
+                    android:textColor="@color/text_color_grey"
+                    android:textSize="@dimen/_14ssp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:spanCount="3"
+                    tools:listitem="@layout/item_layout_selected_city" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_start"
+                    style="@style/ButtonContainedPrimary"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="@string/start" />
+            </LinearLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
