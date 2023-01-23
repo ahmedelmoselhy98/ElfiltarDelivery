@@ -258,7 +258,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_10sdp"
-                    android:text="يمكنك اختيار حد اقصى 12 مدينة"
+                    android:text="@string/caution_if_you_do_not_choose_any_city_all_cities_within_the_selected_governorate_will_be_selected"
                     android:textColor="@color/text_color_grey"
                     android:textSize="@dimen/_14ssp" />
 

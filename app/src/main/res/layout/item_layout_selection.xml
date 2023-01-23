@@ -36,7 +36,7 @@
                 android:layout_marginStart="@dimen/_8sdp"
                 android:textAlignment="textStart"
                 android:textColor="@color/text_color_black"
-                android:textSize="@dimen/_15ssp" />
+                android:textSize="@dimen/_12ssp" />
         </LinearLayout>
 
         <View

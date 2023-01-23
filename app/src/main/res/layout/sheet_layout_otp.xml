@@ -53,6 +53,7 @@
                 app:bar_height="2dp"
                 app:bar_inactive_color="@color/stroke_grey"
                 app:height="40dp"
+                android:layoutDirection="ltr"
                 app:length="6"
                 app:otp_text_size="@dimen/_18ssp"
                 app:width="40dp" />

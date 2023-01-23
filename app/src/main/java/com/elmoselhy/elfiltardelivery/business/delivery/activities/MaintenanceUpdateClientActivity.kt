@@ -42,12 +42,19 @@ class MaintenanceUpdateClientActivity : BaseActivity() {
         binding.item = clientModel
         if (clientModel.id != null)
             bodyMap["client_id"] = clientModel.id!!
+        bodyMap["stages_number"] = clientModel.stages_number!!
+        bodyMap["city_id"] = clientModel.city_id!!
+        bodyMap["governorate_id"] = clientModel.governorate_id!!
+        bodyMap["water_quality_id"] = clientModel.water_quality!!.id!!
+
 
         MyUtils.executeDelay(500, onExecute = {
             binding.includeSelectionNumberOfStages.tvTitle.text = "" + clientModel.stages_number!!
-            binding.includeSelectionWaterQuality.tvTitle.text = "" + clientModel.water_quality!!.title!!
+            binding.includeSelectionWaterQuality.tvTitle.text =
+                "" + clientModel.water_quality!!.title!!
             binding.includeSelectionCity.tvTitle.text = "" + clientModel.city!!.title!!
-            binding.includeSelectionGovernorate.tvTitle.text = "" + clientModel.governorate!!.title!!
+            binding.includeSelectionGovernorate.tvTitle.text =
+                "" + clientModel.governorate!!.title!!
         })
         setUpPageActions()
         setUpGovernorateSelection()
@@ -192,10 +199,10 @@ class MaintenanceUpdateClientActivity : BaseActivity() {
                 binding.includeSelectionWaterQuality.etSearch,
                 0,
                 onItemSelected = { position, item ->
-                    bodyMap["water_quality"] = list[position].id!!
+                    bodyMap["water_quality_id"] = list[position].id!!
                 },
                 onItemUnSelected = { position, item ->
-                    bodyMap.remove("water_quality")
+                    bodyMap.remove("water_quality_id")
                 }
             )
         })

@@ -53,6 +53,12 @@ class SignUpActivity : BaseActivity() {
 
     override fun init() {
         registerBody["type"] = MyConstants.Enums.UserType.company
+        if (intent.getStringExtra("phone") != null)
+            binding.etPhone.setText(intent.getStringExtra("phone")!!)
+        if (intent.getStringExtra("phone_code") != null)
+            binding.countryCodePicker.setCountryForPhoneCode(
+                intent.getStringExtra("phone_code")!!.toInt()
+            )
         setUpPageActions()
         setUpList()
         setUpObserver()
@@ -91,22 +97,6 @@ class SignUpActivity : BaseActivity() {
                     )
                     return@setOnClickListener
                 }
-            }
-            if (dataList.isNullOrEmpty()) {
-                MyUtils.shoMsg(
-                    this,
-                    getString(R.string.Must_Select_Cities),
-                    MotionToast.TOAST_ERROR
-                )
-                return@setOnClickListener
-            }
-            if (dataList.size > 12) {
-                MyUtils.shoMsg(
-                    this,
-                    getString(R.string.can_not_select_more_than_city),
-                    MotionToast.TOAST_ERROR
-                )
-                return@setOnClickListener
             }
             register()
         }
@@ -160,7 +150,9 @@ class SignUpActivity : BaseActivity() {
     private fun selectPicture() {
         if (CheckPermissionsHelper.isCameraPermissionGranted(this)) {
             appViewModel.isLoading.postValue(true)
-            CameraGalleryDialog(this).show()
+            CameraGalleryDialog(this, click = {
+                appViewModel.isLoading.postValue(false)
+            }).show()
         }
     }
 

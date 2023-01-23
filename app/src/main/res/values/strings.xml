@@ -204,5 +204,7 @@
     <string name="canceled_requests">Canceled Requests</string>
     <string name="otp_is_required">Otp is required</string>
     <string name="invalid_otp_code">Invalid Otp Code</string>
+    <string name="update_client">Update Client</string>
+    <string name="caution_if_you_do_not_choose_any_city_all_cities_within_the_selected_governorate_will_be_selected">Caution: If you do not choose any city, all cities within the selected governorate will be selected</string>
 
 </resources>

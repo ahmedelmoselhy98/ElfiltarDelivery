@@ -61,7 +61,15 @@ class SignInActivity : BaseActivity() {
         }
         eventDisposable = RxBus.listen(PhoneNotRegisteredEvent::class.java)
             .subscribe() { event ->
-                startActivity(Intent(this, SignUpActivity::class.java))
+                startActivity(
+                    Intent(this, SignUpActivity::class.java).putExtra(
+                        "phone",
+                        binding.etPhone.text.toString()
+                    ).putExtra(
+                        "phone_code",
+                        binding.countryCodePicker.selectedCountryCode
+                    )
+                )
             }
     }
 
@@ -122,14 +130,18 @@ class SignInActivity : BaseActivity() {
             storedVerificationId = verificationId
             resendToken = token
             runOnUiThread {
-                OtpSheet(this@SignInActivity,"+${binding.countryCodePicker.selectedCountryCode + binding.etPhone.text.toString()}", onResendCode = {
-                    resendVerificationCode(
-                        "+${binding.countryCodePicker.selectedCountryCode + binding.etPhone.text.toString()}",
-                        resendToken
-                    )
-                }, onConfirm = {
-                    verifyPhoneNumberWithCode(storedVerificationId, it)
-                }).show()
+                OtpSheet(
+                    this@SignInActivity,
+                    "+${binding.countryCodePicker.selectedCountryCode + binding.etPhone.text.toString()}",
+                    onResendCode = {
+                        resendVerificationCode(
+                            "+${binding.countryCodePicker.selectedCountryCode + binding.etPhone.text.toString()}",
+                            resendToken
+                        )
+                    },
+                    onConfirm = {
+                        verifyPhoneNumberWithCode(storedVerificationId, it)
+                    }).show()
             }
         }
     }

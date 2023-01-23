@@ -204,5 +204,7 @@
     <string name="canceled_requests">الطلبات المرفوضه</string>
     <string name="otp_is_required">كود التحقق مطلوب</string>
     <string name="invalid_otp_code">كود تحقق غير صحيح</string>
+    <string name="update_client">تعديل العميل</string>
+    <string name="caution_if_you_do_not_choose_any_city_all_cities_within_the_selected_governorate_will_be_selected">تنبية : اذا لم تختار اى مدينه سيتم تحديد كل المدن داخل المحافظة التى تم اختيارها</string>
 
 </resources>

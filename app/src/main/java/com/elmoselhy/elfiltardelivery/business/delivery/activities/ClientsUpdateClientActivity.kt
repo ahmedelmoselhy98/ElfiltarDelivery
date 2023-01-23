@@ -38,6 +38,12 @@ class ClientsUpdateClientActivity : BaseActivity() {
         binding.item = clientModel
         if (clientModel.id != null)
             bodyMap["client_id"] = clientModel.id!!
+
+        bodyMap["stages_number"] = clientModel.stages_number!!
+        bodyMap["city_id"] = clientModel.city_id!!
+        bodyMap["governorate_id"] = clientModel.governorate_id!!
+        bodyMap["water_quality"] = clientModel.water_quality!!.id!!
+
         setUpPageActions()
         setUpGovernorateSelection()
 

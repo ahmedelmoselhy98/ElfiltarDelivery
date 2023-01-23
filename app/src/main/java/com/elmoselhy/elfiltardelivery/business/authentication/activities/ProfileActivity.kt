@@ -86,22 +86,6 @@ class ProfileActivity : BaseActivity() {
                     this, getInputsUiList()
                 )
             ) return@setOnClickListener
-            if (dataList.isNullOrEmpty()) {
-                MyUtils.shoMsg(
-                    this,
-                    getString(R.string.Must_Select_Cities),
-                    MotionToast.TOAST_ERROR
-                )
-                return@setOnClickListener
-            }
-            if (dataList.size > 12) {
-                MyUtils.shoMsg(
-                    this,
-                    getString(R.string.can_not_select_more_than_city),
-                    MotionToast.TOAST_ERROR
-                )
-                return@setOnClickListener
-            }
             update()
         }
         binding.ivProfile.setOnClickListener {
@@ -130,7 +114,9 @@ class ProfileActivity : BaseActivity() {
     private fun selectPicture() {
         if (CheckPermissionsHelper.isCameraPermissionGranted(this)) {
             appViewModel.isLoading.postValue(true)
-            CameraGalleryDialog(this).show()
+            CameraGalleryDialog(this, click = {
+                appViewModel.isLoading.postValue(false)
+            }).show()
         }
     }
 
@@ -242,32 +228,33 @@ class ProfileActivity : BaseActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (data != null && data.data != null) when (imageTyp) {
-            "image" -> {
-                image = CameraGalleryHelper.getImageSelectionMultipart(
-                    this, data.data!!, "image"
-                )
-                binding.ivProfile.setImageURI(data.data)
+        if (data != null && data.data != null)
+            when (imageTyp) {
+                "image" -> {
+                    image = CameraGalleryHelper.getImageSelectionMultipart(
+                        this, data.data!!, "image"
+                    )
+                    binding.ivProfile.setImageURI(data.data)
+                }
+                "nationality_id_image" -> {
+                    nationality_id_image = CameraGalleryHelper.getImageSelectionMultipart(
+                        this, data.data!!, "nationality_id_image"
+                    )
+                    binding.ivIdentityImage.setImageURI(data.data)
+                }
+                "tax_number_image" -> {
+                    tax_number_image = CameraGalleryHelper.getImageSelectionMultipart(
+                        this, data.data!!, "tax_number_image"
+                    )
+                    binding.ivTaxRegistryImage.setImageURI(data.data)
+                }
+                "commercial_number_image" -> {
+                    commercial_number_image = CameraGalleryHelper.getImageSelectionMultipart(
+                        this, data.data!!, "commercial_number_image"
+                    )
+                    binding.ivCommercialRegistryImage.setImageURI(data.data)
+                }
             }
-            "nationality_id_image" -> {
-                nationality_id_image = CameraGalleryHelper.getImageSelectionMultipart(
-                    this, data.data!!, "nationality_id_image"
-                )
-                binding.ivIdentityImage.setImageURI(data.data)
-            }
-            "tax_number_image" -> {
-                tax_number_image = CameraGalleryHelper.getImageSelectionMultipart(
-                    this, data.data!!, "tax_number_image"
-                )
-                binding.ivTaxRegistryImage.setImageURI(data.data)
-            }
-            "commercial_number_image" -> {
-                commercial_number_image = CameraGalleryHelper.getImageSelectionMultipart(
-                    this, data.data!!, "commercial_number_image"
-                )
-                binding.ivCommercialRegistryImage.setImageURI(data.data)
-            }
-        }
         appViewModel.isLoading.postValue(false)
     }
 }
