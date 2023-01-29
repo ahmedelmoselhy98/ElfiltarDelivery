@@ -42,19 +42,24 @@ class ClientsAddClientActivity : BaseActivity() {
         binding.btnAdd.setOnClickListener {
             if (!ElmoselhyInputHelper.checkIfInputsIsValid(this, getInputsUiList())) {
                 return@setOnClickListener
-            }
-            if (bodyMap["governorate_id"] == null) {
+            } else if (bodyMap["date_of_contract"] == null) {
                 MyUtils.shoMsg(
                     this,
-                    getString(R.string.governorate) + " "+getString(R.string.error_message_required),
+                    getString(R.string.date_of_contract) + " " + getString(R.string.error_message_required),
                     MotionToast.TOAST_ERROR
                 )
                 return@setOnClickListener
-            }
-            if (bodyMap["city_id"] == null) {
+            } else if (bodyMap["governorate_id"] == null) {
                 MyUtils.shoMsg(
                     this,
-                    getString(R.string.city) + " "+getString(R.string.error_message_required),
+                    getString(R.string.governorate) + " " + getString(R.string.error_message_required),
+                    MotionToast.TOAST_ERROR
+                )
+                return@setOnClickListener
+            } else if (bodyMap["city_id"] == null) {
+                MyUtils.shoMsg(
+                    this,
+                    getString(R.string.city) + " " + getString(R.string.error_message_required),
                     MotionToast.TOAST_ERROR
                 )
                 return@setOnClickListener
@@ -69,6 +74,8 @@ class ClientsAddClientActivity : BaseActivity() {
         bodyMap["address"] = binding.etLocation.text.toString()
         bodyMap["phone_code"] = binding.countryCodePicker.selectedCountryCode
         bodyMap["phone"] = binding.etPhone.text.toString()
+        if (binding.tvDateOfContract.isValid)
+            bodyMap["date_of_contract"] = binding.tvDateOfContract.apiDate
         bodyMap["status"] = if (binding.switchStatus.isChecked) 1 else 0
         appViewModel.addClient(bodyMap, onResult = {
             MyUtils.shoMsg(

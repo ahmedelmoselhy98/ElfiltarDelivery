@@ -64,7 +64,7 @@ class SignInActivity : BaseActivity() {
                 startActivity(
                     Intent(this, SignUpActivity::class.java).putExtra(
                         "phone",
-                        binding.etPhone.text.toString()
+                        getPhone()
                     ).putExtra(
                         "phone_code",
                         binding.countryCodePicker.selectedCountryCode
@@ -73,9 +73,20 @@ class SignInActivity : BaseActivity() {
             }
     }
 
+    fun getPhone(): String {
+        var phone = ""
+        if (binding.etPhone.text.toString().length > 1)
+            phone = if (binding.etPhone.text.toString()[0] == '0') {
+                binding.etPhone.text.toString().substring(1)
+            } else binding.etPhone.text.toString()
+        return phone
+    }
+
     private fun login() {
+
+
         appViewModel.login(
-            binding.etPhone.text.toString(),
+            getPhone(),
             binding.countryCodePicker.selectedCountryCode,
             onResult = {
                 if (it != null) {
@@ -132,10 +143,10 @@ class SignInActivity : BaseActivity() {
             runOnUiThread {
                 OtpSheet(
                     this@SignInActivity,
-                    "+${binding.countryCodePicker.selectedCountryCode + binding.etPhone.text.toString()}",
+                    "+${binding.countryCodePicker.selectedCountryCode + getPhone()}",
                     onResendCode = {
                         resendVerificationCode(
-                            "+${binding.countryCodePicker.selectedCountryCode + binding.etPhone.text.toString()}",
+                            "+${binding.countryCodePicker.selectedCountryCode + getPhone()}",
                             resendToken
                         )
                     },
@@ -151,10 +162,10 @@ class SignInActivity : BaseActivity() {
         appViewModel.isLoading.postValue(true)
         Log.e(
             "phone",
-            "+${binding.countryCodePicker.selectedCountryCode + binding.etPhone.text.toString()}"
+            "+${binding.countryCodePicker.selectedCountryCode + getPhone()}"
         )
         val options = PhoneAuthOptions.newBuilder(auth)
-            .setPhoneNumber("+${binding.countryCodePicker.selectedCountryCode + binding.etPhone.text.toString()}")       // Phone number to verify
+            .setPhoneNumber("+${binding.countryCodePicker.selectedCountryCode + getPhone()}")       // Phone number to verify
             .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
             .setActivity(this)                 // Activity (for callback binding)
             .setCallbacks(callbacks)          // OnVerificationStateChangedCallbacks

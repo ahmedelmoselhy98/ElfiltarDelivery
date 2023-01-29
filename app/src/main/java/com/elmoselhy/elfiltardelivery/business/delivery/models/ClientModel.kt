@@ -73,6 +73,10 @@ open class ClientModel : BaseModel() {
     @Expose
     var governorate_id: Int? = null
 
+    @SerializedName("date_of_contract")
+    @Expose
+    var date_of_contract: String? = null
+
     @SerializedName("notes")
     @Expose
     var notes: String? = null

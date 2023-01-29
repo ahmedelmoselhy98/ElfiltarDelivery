@@ -72,6 +72,8 @@ class ClientsUpdateClientActivity : BaseActivity() {
         bodyMap["address"] = binding.etLocation.text.toString()
         bodyMap["phone_code"] = binding.countryCodePicker.selectedCountryCode
         bodyMap["phone"] = binding.etPhone.text.toString()
+        if (binding.tvDateOfContract.isValid)
+            bodyMap["date_of_contract"] = binding.tvDateOfContract.apiDate
         bodyMap["status"] = if (binding.switchStatus.isChecked) 1 else 0
         appViewModel.updateClient(bodyMap, onResult = {
             MyUtils.shoMsg(

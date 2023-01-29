@@ -88,7 +88,9 @@ class MaintenanceUpdateClientActivity : BaseActivity() {
         bodyMap["last_name"] = binding.etLastName.text.toString()
         bodyMap["address"] = binding.etLocation.text.toString()
         bodyMap["phone_code"] = binding.countryCodePicker.selectedCountryCode
-        bodyMap["phone"] = binding.etPhone.text.toString()
+        bodyMap["date_of_contract"] = binding.tvDateOfContract.apiDate
+        if (binding.tvDateOfContract.isValid)
+            bodyMap["phone"] = binding.etPhone.text.toString()
         bodyMap["status"] = if (binding.switchStatus.isChecked) 1 else 0
 
         var datesList = ArrayList<String>()
