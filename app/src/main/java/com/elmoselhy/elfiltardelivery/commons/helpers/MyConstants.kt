@@ -2,7 +2,7 @@ package com.elmoselhy.elfiltardelivery.commons.helpers
 
 class MyConstants {
     object Public {
-        var SERVER_BASE_URL = "https://elfiltar.nami-tec.com/"
+        var SERVER_BASE_URL = "https://elfiltar.com/"
         var SERVER_API_URL = "${SERVER_BASE_URL}api/"
         const val SPLASH_DISPLAY_LENGTH: Long = 2000
     }
