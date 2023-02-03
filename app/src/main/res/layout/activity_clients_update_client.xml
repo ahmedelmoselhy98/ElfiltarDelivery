@@ -149,7 +149,7 @@
                 <com.elmoselhy.elfiltardelivery.commons.customcomponent.textview.DateTextView
                     android:id="@+id/tv_date_of_contract"
                     style="@style/BoxEditTextGrey"
-                    bindServerDate="@{item.date_of_contract}"
+                    setText="@{item.date_of_contract}"
                     android:layout_marginHorizontal="@dimen/_10sdp"
                     android:hint="@string/date_of_contract"
                     android:inputType="text" />

@@ -43,28 +43,17 @@ class SignInActivity : BaseActivity() {
     }
 
     private fun setUpPageActions() {
-        binding.linearSignUp.setOnClickListener {
-            startActivity(Intent(this, SignUpActivity::class.java))
-        }
         binding.btnLogin.setOnClickListener {
             if (ElmoselhyInputHelper.checkIfInputsIsValid(this, getInputsUiList())) {
                 startPhoneNumberVerification()
             }
-        }
-        binding.tvForgetPassword.setOnClickListener {
-            startActivity(
-                Intent(
-                    this,
-                    ForgetPasswordActivity::class.java
-                )
-            )
         }
         eventDisposable = RxBus.listen(PhoneNotRegisteredEvent::class.java)
             .subscribe() { event ->
                 startActivity(
                     Intent(this, SignUpActivity::class.java).putExtra(
                         "phone",
-                        getPhone()
+                        binding.etPhone.text.toString()
                     ).putExtra(
                         "phone_code",
                         binding.countryCodePicker.selectedCountryCode
@@ -110,7 +99,8 @@ class SignInActivity : BaseActivity() {
             //     detect the incoming verification SMS and perform verification without
             //     user action.
             Log.d("SignInActivity", "onVerificationCompleted:$credential")
-//            signInWithPhoneAuthCredential(credential)
+            appViewModel.isLoading.postValue(true)
+            signInWithPhoneAuthCredential(credential)
         }
 
         override fun onVerificationFailed(e: FirebaseException) {

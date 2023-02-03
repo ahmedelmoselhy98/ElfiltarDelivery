@@ -84,40 +84,6 @@
                     style="@style/ButtonContainedPrimary"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:text="@string/public_login" />
-
-                <TextView
-                    android:id="@+id/tv_forget_password"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/_5sdp"
-                    android:text="@{@string/public_forget_password+@string/sign_question}"
-                    android:textColor="@color/text_color_primary" />
-
-
-                <LinearLayout
-                    android:id="@+id/linear_sign_up"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:visibility="gone"
-                    android:layout_marginVertical="@dimen/_30sdp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/_5sdp"
-                        android:text="@{@string/public_not_have_account+@string/sign_question}"
-                        android:textColor="@color/text_color_black"
-                        android:textSize="@dimen/_13ssp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/public_sign_up"
-                        android:textColor="@color/text_color_primary"
-                        android:textSize="@dimen/_14ssp"
-                        android:textStyle="bold" />
-                </LinearLayout>
             </LinearLayout>
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>

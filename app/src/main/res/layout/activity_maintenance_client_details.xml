@@ -180,7 +180,7 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:drawableStart="@drawable/icon_calendar"
                     android:drawablePadding="@dimen/_8sdp"
-                    bindServerDate="@{client.date_of_contract}"
+                    setText="@{client.date_of_contract}"
                     android:drawableTint="@color/icon_tint_primary"
                     android:textColor="@color/text_color_black"
                     android:textSize="@dimen/_14ssp" />

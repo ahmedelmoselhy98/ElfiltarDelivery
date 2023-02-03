@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:drawablePadding="@dimen/_10sdp"
             android:padding="@dimen/_8sdp"
-            android:textAlignment="textStart"
+            android:textAlignment="viewStart"
             android:textColor="@color/text_color_black"
             android:textSize="@dimen/_14ssp"
             android:textStyle="bold" />

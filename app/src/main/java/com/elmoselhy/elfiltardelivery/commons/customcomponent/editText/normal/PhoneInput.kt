@@ -14,16 +14,12 @@ class PhoneInput(context: Context, attrs: AttributeSet?) : BaseInput(context, at
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
             }
             override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
+                typingCallback.onTyping(charSequence.toString())
+                if (isRequired)
+                    testValidation(charSequence.toString())
             }
 
             override fun afterTextChanged(editable: Editable) {
-                if (!editable.isNullOrBlank() && editable[0] == '0') {
-                    editable.delete(0, 1)
-                    return
-                }
-                typingCallback.onTyping(editable.toString())
-                if (isRequired)
-                    testValidation(editable.toString())
             }
         })
     }

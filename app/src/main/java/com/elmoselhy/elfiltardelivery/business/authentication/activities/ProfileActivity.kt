@@ -123,7 +123,7 @@ class ProfileActivity : BaseActivity() {
     private fun update() {
         registerBody["name"] = binding.etName.text.toString()
         registerBody["phone_code"] = binding.countryCodePicker.selectedCountryCode
-        registerBody["phone"] = binding.etPhone.text.toString()
+        registerBody["phone"] = getPhone()
         registerBody["address"] = binding.etLocation.text.toString()
         cities.clear()
         dataList.forEach {
@@ -174,6 +174,14 @@ class ProfileActivity : BaseActivity() {
         })
     }
 
+    fun getPhone(): String {
+        var phone = ""
+        if (binding.etPhone.text.toString().length > 1)
+            phone = if (binding.etPhone.text.toString()[0] == '0') {
+                binding.etPhone.text.toString().substring(1)
+            } else binding.etPhone.text.toString()
+        return phone
+    }
     private fun setUpCitySelection(list: ArrayList<BaseModel>) {
         UtilsCustomExpandable.setUpExpandList(
             this,

@@ -199,7 +199,7 @@
     <string name="active_maintenance_clients">عملاء الصيانة النشطين</string>
     <string name="earnings">الارباح</string>
     <string name="un_active_maintenance_clients">عملاء الصيانة غير النشطين</string>
-    <string name="current_requests">الطلبان الحالية</string>
+    <string name="current_requests">الطلبات الحالية</string>
     <string name="end_requests">الطلبات المنتهيه</string>
     <string name="canceled_requests">الطلبات المرفوضه</string>
     <string name="otp_is_required">كود التحقق مطلوب</string>
