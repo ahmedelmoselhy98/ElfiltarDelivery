@@ -41,7 +41,7 @@
                     android:src="@drawable/icon_close_circle_fill" />
             </LinearLayout>
 
-            <com.elmoselhy.elfiltardelivery.commons.customcomponent.textview.DateTextView
+            <com.elfiltar.elfiltartechnician.commons.customcomponent.textview.DateTextView
                 android:id="@+id/tv_day"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.elmoselhy.elfiltardelivery.commons.customcomponent.editText.normal.TextInput
+                <com.elfiltar.elfiltartechnician.commons.customcomponent.editText.normal.TextInput
                     android:id="@+id/et_notes"
                     style="@style/BoxEditTextGrey"
                     android:layout_width="match_parent"

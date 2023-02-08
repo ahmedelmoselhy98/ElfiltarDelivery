@@ -9,11 +9,11 @@
 
         <variable
             name="profile"
-            type="com.elmoselhy.elfiltardelivery.business.authentication.models.ProfileModel" />
+            type="com.elfiltar.elfiltartechnician.business.authentication.models.ProfileModel" />
 
         <variable
             name="viewModel"
-            type="com.elmoselhy.elfiltardelivery.base.BaseViewModel" />
+            type="com.elfiltar.elfiltartechnician.base.BaseViewModel" />
 
     </data>
 

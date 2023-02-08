@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.elmoselhy.elfiltardelivery.base.BaseViewModel" />
+            type="com.elfiltar.elfiltartechnician.base.BaseViewModel" />
 
     </data>
 
@@ -84,7 +84,7 @@
                     android:id="@+id/iv_search"
                     android:src="@drawable/icon_search" />
 
-                <com.elmoselhy.elfiltardelivery.commons.customcomponent.editText.normal.TextInput
+                <com.elfiltar.elfiltartechnician.commons.customcomponent.editText.normal.TextInput
                     android:id="@+id/et_search"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

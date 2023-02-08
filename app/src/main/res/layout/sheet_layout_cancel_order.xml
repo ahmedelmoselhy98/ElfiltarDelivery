@@ -45,7 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.elmoselhy.elfiltardelivery.commons.customcomponent.editText.normal.TextInput
+                <com.elfiltar.elfiltartechnician.commons.customcomponent.editText.normal.TextInput
                     android:id="@+id/et_notes"
                     style="@style/BoxEditTextGrey"
                     android:layout_width="match_parent"

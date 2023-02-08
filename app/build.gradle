@@ -9,11 +9,11 @@ plugins {
 }
 
 android {
-    namespace 'com.elmoselhy.elfiltardelivery'
+    namespace 'com.elfiltar.elfiltartechnician'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.elmoselhy.elfiltardelivery"
+        applicationId "com.elfiltar.elfiltartechnician"
         minSdk 21
         targetSdk 33
         versionCode 1
@@ -140,6 +140,9 @@ dependencies {
 
     implementation platform('com.google.firebase:firebase-bom:31.1.1')
     implementation 'com.google.firebase:firebase-analytics-ktx'
+
+
+    implementation("com.tbuonomo:dotsindicator:4.3")
 
 }
 

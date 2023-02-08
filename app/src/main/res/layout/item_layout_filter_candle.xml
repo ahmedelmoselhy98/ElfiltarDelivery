@@ -5,7 +5,7 @@
 
         <variable
             name="item"
-            type="com.elmoselhy.elfiltardelivery.business.delivery.models.FilterCandleModel" />
+            type="com.elfiltar.elfiltartechnician.business.delivery.models.FilterCandleModel" />
     </data>
 
     <LinearLayout
@@ -49,7 +49,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/background_stroke_rectangle_grey">
 
-                <com.elmoselhy.elfiltardelivery.commons.customcomponent.editText.normal.TextInput
+                <com.elfiltar.elfiltartechnician.commons.customcomponent.editText.normal.TextInput
                     android:id="@+id/et_change_after"
                     setText='@{""+item.change_after}'
                     android:layout_width="wrap_content"

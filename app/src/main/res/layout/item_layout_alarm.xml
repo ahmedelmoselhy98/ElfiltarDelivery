@@ -6,7 +6,7 @@
 
         <variable
             name="item"
-            type="com.elmoselhy.elfiltardelivery.business.delivery.models.AlarmModel" />
+            type="com.elfiltar.elfiltartechnician.business.delivery.models.AlarmModel" />
     </data>
 
     <LinearLayout

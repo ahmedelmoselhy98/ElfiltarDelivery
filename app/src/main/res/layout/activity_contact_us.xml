@@ -34,7 +34,7 @@
                 android:src="@drawable/image_contact_us" />
 
 
-            <com.elmoselhy.elfiltardelivery.commons.customcomponent.editText.normal.TextInput
+            <com.elfiltar.elfiltartechnician.commons.customcomponent.editText.normal.TextInput
                 android:id="@+id/et_name"
                 style="@style/BoxEditTextGrey"
                 android:drawableStart="@drawable/icon_user_outline_circle"
@@ -44,7 +44,7 @@
                 android:inputType="text" />
 
 
-            <com.elmoselhy.elfiltardelivery.commons.customcomponent.editText.normal.PhoneInput
+            <com.elfiltar.elfiltartechnician.commons.customcomponent.editText.normal.PhoneInput
                 android:id="@+id/et_phone"
                 style="@style/BoxEditTextGrey"
                 android:drawableStart="@drawable/icon_phone_outline"
@@ -53,7 +53,7 @@
                 android:hint="@string/public_phone_number"
                 android:inputType="phone" />
 
-            <com.elmoselhy.elfiltardelivery.commons.customcomponent.editText.normal.TextInput
+            <com.elfiltar.elfiltartechnician.commons.customcomponent.editText.normal.TextInput
                 android:id="@+id/et_address"
                 style="@style/BoxEditTextGrey"
                 android:drawableStart="@drawable/icon_feather"
@@ -63,7 +63,7 @@
                 android:inputType="text" />
 
 
-            <com.elmoselhy.elfiltardelivery.commons.customcomponent.editText.normal.TextInput
+            <com.elfiltar.elfiltartechnician.commons.customcomponent.editText.normal.TextInput
                 android:id="@+id/et_message"
                 style="@style/BoxEditTextGrey"
                 android:layout_weight="1"

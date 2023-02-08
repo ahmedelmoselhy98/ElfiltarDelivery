@@ -9,11 +9,11 @@
 
         <variable
             name="client"
-            type="com.elmoselhy.elfiltardelivery.business.delivery.models.ClientModel" />
+            type="com.elfiltar.elfiltartechnician.business.delivery.models.ClientModel" />
 
         <variable
             name="viewModel"
-            type="com.elmoselhy.elfiltardelivery.base.BaseViewModel" />
+            type="com.elfiltar.elfiltartechnician.base.BaseViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -6,7 +6,7 @@
 
         <variable
             name="item"
-            type="com.elmoselhy.elfiltardelivery.business.delivery.models.OrderModel" />
+            type="com.elfiltar.elfiltartechnician.business.delivery.models.OrderModel" />
     </data>
 
     <androidx.cardview.widget.CardView

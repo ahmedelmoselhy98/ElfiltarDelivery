@@ -6,7 +6,7 @@
     <data>
     <variable
         name="viewModel"
-        type="com.elmoselhy.elfiltardelivery.base.BaseViewModel" />
+        type="com.elfiltar.elfiltartechnician.base.BaseViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -70,7 +70,7 @@
                         app:ccp_showNameCode="false"
                         app:ccp_showPhoneCode="true" />
 
-                    <com.elmoselhy.elfiltardelivery.commons.customcomponent.editText.normal.PhoneInput
+                    <com.elfiltar.elfiltartechnician.commons.customcomponent.editText.normal.PhoneInput
                         android:id="@+id/et_phone"
                         style="@style/BoxEditTextGrey"
                         android:layout_marginStart="@dimen/_8sdp"

@@ -9,11 +9,11 @@
 
         <variable
             name="item"
-            type="com.elmoselhy.elfiltardelivery.business.delivery.models.OrderModel" />
+            type="com.elfiltar.elfiltartechnician.business.delivery.models.OrderModel" />
 
         <variable
             name="viewModel"
-            type="com.elmoselhy.elfiltardelivery.base.BaseViewModel" />
+            type="com.elfiltar.elfiltartechnician.base.BaseViewModel" />
 
     </data>
 
@@ -173,7 +173,7 @@
                             android:textSize="@dimen/_18sdp"
                             android:textStyle="bold" />
 
-                        <com.elmoselhy.elfiltardelivery.commons.customcomponent.editText.normal.TextInput
+                        <com.elfiltar.elfiltartechnician.commons.customcomponent.editText.normal.TextInput
                             android:id="@+id/et_cost"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

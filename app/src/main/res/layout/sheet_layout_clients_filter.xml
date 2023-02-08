@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/_10sdp">
 
-                <com.elmoselhy.elfiltardelivery.commons.customcomponent.textview.DateTextView
+                <com.elfiltar.elfiltartechnician.commons.customcomponent.textview.DateTextView
                     android:id="@+id/tv_from"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
                     android:padding="@dimen/_10sdp"
                     android:textColorHint="@color/hint_color_grey" />
 
-                <com.elmoselhy.elfiltardelivery.commons.customcomponent.textview.DateTextView
+                <com.elfiltar.elfiltartechnician.commons.customcomponent.textview.DateTextView
                     android:id="@+id/tv_to"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

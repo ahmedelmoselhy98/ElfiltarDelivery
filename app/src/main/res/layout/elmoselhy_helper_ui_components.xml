@@ -4,13 +4,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.elmoselhy.elfiltardelivery.commons.customcomponent.editText.normal.PhoneInput
+    <com.elfiltar.elfiltartechnician.commons.customcomponent.editText.normal.PhoneInput
         android:id="@+id/et_phone"
         style="@style/BoxEditTextGrey"
         android:hint="@string/public_phone_number"
         android:inputType="phone" />
 
-    <com.elmoselhy.elfiltardelivery.commons.customcomponent.expandableSelection.CustomExpandableSelection
+    <com.elfiltar.elfiltartechnician.commons.customcomponent.expandableSelection.CustomExpandableSelection
         android:id="@+id/selection_country"
         style="@style/SelectionExpandable"
         android:layout_width="match_parent"

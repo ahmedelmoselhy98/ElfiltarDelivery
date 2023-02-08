@@ -9,11 +9,11 @@
 
         <variable
             name="item"
-            type="com.elmoselhy.elfiltardelivery.business.delivery.models.ClientModel" />
+            type="com.elfiltar.elfiltartechnician.business.delivery.models.ClientModel" />
 
         <variable
             name="viewModel"
-            type="com.elmoselhy.elfiltardelivery.base.BaseViewModel" />
+            type="com.elfiltar.elfiltartechnician.base.BaseViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -58,7 +58,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_10sdp">
 
-                    <com.elmoselhy.elfiltardelivery.commons.customcomponent.editText.normal.TextInput
+                    <com.elfiltar.elfiltartechnician.commons.customcomponent.editText.normal.TextInput
                         android:id="@+id/et_first_name"
                         style="@style/BoxEditTextGrey"
                         setText="@{item.first_name}"
@@ -67,7 +67,7 @@
                         android:hint="@string/public_first_name"
                         android:inputType="text" />
 
-                    <com.elmoselhy.elfiltardelivery.commons.customcomponent.editText.normal.TextInput
+                    <com.elfiltar.elfiltartechnician.commons.customcomponent.editText.normal.TextInput
                         android:id="@+id/et_last_name"
                         style="@style/BoxEditTextGrey"
                         setText="@{item.last_name}"
@@ -105,7 +105,7 @@
                         app:ccp_showNameCode="false"
                         app:ccp_showPhoneCode="true" />
 
-                    <com.elmoselhy.elfiltardelivery.commons.customcomponent.editText.normal.PhoneInput
+                    <com.elfiltar.elfiltartechnician.commons.customcomponent.editText.normal.PhoneInput
                         android:id="@+id/et_phone"
                         style="@style/BoxEditTextGrey"
                         setText="@{item.phone}"
@@ -127,7 +127,7 @@
                     android:textColor="@color/text_color_black"
                     android:textSize="@dimen/_16ssp" />
 
-                <com.elmoselhy.elfiltardelivery.commons.customcomponent.editText.normal.TextInput
+                <com.elfiltar.elfiltartechnician.commons.customcomponent.editText.normal.TextInput
                     android:id="@+id/et_facebook_link"
                     style="@style/BoxEditTextGrey"
                     android:layout_marginHorizontal="@dimen/_10sdp"
@@ -146,7 +146,7 @@
                     android:textColor="@color/text_color_black"
                     android:textSize="@dimen/_16ssp" />
 
-                <com.elmoselhy.elfiltardelivery.commons.customcomponent.textview.DateTextView
+                <com.elfiltar.elfiltartechnician.commons.customcomponent.textview.DateTextView
                     android:id="@+id/tv_date_of_contract"
                     style="@style/BoxEditTextGrey"
                     setText="@{item.date_of_contract}"
@@ -209,7 +209,7 @@
                     android:textColor="@color/text_color_black"
                     android:textSize="@dimen/_16ssp" />
 
-                <com.elmoselhy.elfiltardelivery.commons.customcomponent.editText.normal.TextInput
+                <com.elfiltar.elfiltartechnician.commons.customcomponent.editText.normal.TextInput
                     android:id="@+id/et_location"
                     style="@style/BoxEditTextGrey"
                     setText="@{item.address}"
