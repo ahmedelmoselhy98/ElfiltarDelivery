@@ -73,7 +73,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             id = remoteMessage.getData().get("id");
             notifyId = remoteMessage.getData().get("notifyId");
             title = remoteMessage.getData().get("title");
-            body = remoteMessage.getData().get("body");
+            body = remoteMessage.getData().get("message");
             img = remoteMessage.getData().get("largeImage");
             icon = remoteMessage.getData().get("icon");
             type = remoteMessage.getData().get("type");

@@ -47,7 +47,7 @@ class OrderDetailsActivity : BaseActivity() {
                 it.user!!.address != null
             )
                 binding.tvAddress.text =
-                    "${it.user!!.country} - ${it.user!!.governorate} - ${it.user!!.address}"
+                    "${it.user!!.country!!.title} - ${it.user!!.governorate!!.title} - ${it.user!!.address}"
 
             binding.sectionContacts.visibility = View.GONE
             binding.sectionPendingActions.visibility = View.GONE
@@ -94,10 +94,10 @@ class OrderDetailsActivity : BaseActivity() {
             onBackPressedDispatcher.onBackPressed()
         }
         binding.btnWhatsApp.setOnClickListener {
-            MyUtils.openWhatsApp(this, orderDetails.user!!.phone!!)
+            MyUtils.openWhatsApp(this, orderDetails.user!!.phone_code!!+orderDetails.user!!.phone!!)
         }
         binding.btnCall.setOnClickListener {
-            MyUtils.callPhoneNumber(this, orderDetails.user!!.phone!!)
+            MyUtils.callPhoneNumber(this, orderDetails.user!!.phone_code!!+orderDetails.user!!.phone!!)
         }
         binding.btnAccept.setOnClickListener {
             appViewModel.acceptOrder(intent!!.getIntExtra("id", 0), onResult = {

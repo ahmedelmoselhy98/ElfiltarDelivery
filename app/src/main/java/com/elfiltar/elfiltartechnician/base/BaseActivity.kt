@@ -1,9 +1,20 @@
 package com.elfiltar.elfiltartechnician.base
 
+import android.Manifest
+import android.app.NotificationManager
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings
+import android.util.Log
 import android.view.View
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat
 import com.elfiltar.elfiltartechnician.business.authentication.activities.SignInActivity
 import com.elfiltar.elfiltartechnician.commons.helpers.MyUtils
 import com.elfiltar.elfiltartechnician.commons.models.ServerErrorModel
@@ -19,6 +30,10 @@ import javax.inject.Inject
 abstract class BaseActivity : AppCompatActivity() {
 
     lateinit var myApp: BaseApp
+    private lateinit var requestPermissionLauncher: ActivityResultLauncher<String>
+    private val notificationManager: NotificationManager by lazy {
+        getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+    }
 
     @Inject
     lateinit var sessionHelper: SessionHelper
@@ -31,6 +46,19 @@ abstract class BaseActivity : AppCompatActivity() {
         setContentView(setUpLayoutView());
         init()
         handleEvents()
+        setUpNotification()
+    }
+
+    fun setUpNotification() {
+        var notificationManager = NotificationManagerCompat.from(this);
+        if (!notificationManager.areNotificationsEnabled()) {
+            var intent = Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
+            intent.putExtra(Settings.EXTRA_APP_PACKAGE, packageName);
+            startActivity(intent);
+        } else {
+            Log.e("permission", "success")
+            // App has permission to post notifications
+        }
     }
 
     private fun handleEvents() {

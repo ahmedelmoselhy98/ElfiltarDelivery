@@ -56,6 +56,7 @@ class AppViewModel @Inject constructor(
     fun registerAsTechnician(
         map: HashMap<String, RequestBody>,
         cities: ArrayList<Int>,
+        governorates: ArrayList<Int>,
         image: MultipartBody.Part,
         nationality_id_image: MultipartBody.Part,
         onResult: (ProfileModel) -> Unit
@@ -63,6 +64,7 @@ class AppViewModel @Inject constructor(
         authenticationRepository.registerAsTechnician(
             map,
             cities,
+            governorates,
             image,
             nationality_id_image,
         ).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io())
@@ -76,6 +78,7 @@ class AppViewModel @Inject constructor(
     fun updateProfile(
         map: HashMap<String, RequestBody>,
         cities: ArrayList<Int>,
+        governorates: ArrayList<Int>,
         image: MultipartBody.Part? = null,
         nationality_id_image: MultipartBody.Part? = null,
         tax_number_image: MultipartBody.Part? = null,
@@ -85,6 +88,7 @@ class AppViewModel @Inject constructor(
         authenticationRepository.updateProfile(
             map,
             cities,
+            governorates,
             image,
             nationality_id_image,
             tax_number_image,
@@ -100,13 +104,14 @@ class AppViewModel @Inject constructor(
     fun registerAsCompany(
         map: HashMap<String, RequestBody>,
         cities: ArrayList<Int>,
+        governorates: ArrayList<Int>,
         image: MultipartBody.Part,
         tax_number_image: MultipartBody.Part,
         commercial_number_image: MultipartBody.Part,
         onResult: (ProfileModel) -> Unit
     ) {
         authenticationRepository.registerAsCompany(
-            map, cities, image, tax_number_image, commercial_number_image
+            map, cities,governorates, image, tax_number_image, commercial_number_image
         ).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io())
             .subscribe(object : CustomRxObserver<ProfileModel>(this@AppViewModel) {
                 override fun onResponse(response: ProfileModel) {
@@ -425,6 +430,18 @@ class AppViewModel @Inject constructor(
             })
     }
 
+    fun getClientDetails(
+        id: String, onResult: (ClientModel) -> Unit
+    ) {
+        authenticationRepository.getClientDetails(id).observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe(object : CustomRxObserver<ClientModel>(this@AppViewModel) {
+                override fun onResponse(response: ClientModel) {
+                    onResult(response)
+                }
+            })
+    }
+
     fun getMaintenanceClients(
         map: HashMap<String, Any>, onResult: (ArrayList<ClientModel>) -> Unit
     ) {
@@ -452,7 +469,6 @@ class AppViewModel @Inject constructor(
                 }
             })
     }
-
     fun addClient(
         map: HashMap<String, Any>, onResult: (ClientModel) -> Unit
     ) {

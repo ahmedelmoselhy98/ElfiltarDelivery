@@ -29,12 +29,14 @@ class AppRepository @Inject constructor(private val apiService: ApiService) {
     fun registerAsTechnician(
         map: HashMap<String, RequestBody>,
         cities: ArrayList<Int>,
+        governorates: ArrayList<Int>,
         image: MultipartBody.Part,
         nationality_id_image: MultipartBody.Part,
     ): Observable<MyData<ProfileModel>> {
         return apiService.registerAsTechnician(
             map,
             cities,
+            governorates,
             image,
             nationality_id_image
         )
@@ -43,6 +45,7 @@ class AppRepository @Inject constructor(private val apiService: ApiService) {
     fun updateProfile(
         map: HashMap<String, RequestBody>,
         cities: ArrayList<Int>,
+        governorates: ArrayList<Int>,
         image: MultipartBody.Part? = null,
         nationality_id_image: MultipartBody.Part? = null,
         tax_number_image: MultipartBody.Part? = null,
@@ -51,6 +54,7 @@ class AppRepository @Inject constructor(private val apiService: ApiService) {
         return apiService.updateProfile(
             map,
             cities,
+            governorates,
             image,
             nationality_id_image,
             tax_number_image,
@@ -61,6 +65,7 @@ class AppRepository @Inject constructor(private val apiService: ApiService) {
     fun registerAsCompany(
         map: HashMap<String, RequestBody>,
         cities: ArrayList<Int>,
+        governorates: ArrayList<Int>,
         image: MultipartBody.Part,
         tax_number_image: MultipartBody.Part,
         commercial_number_image: MultipartBody.Part,
@@ -68,6 +73,7 @@ class AppRepository @Inject constructor(private val apiService: ApiService) {
         return apiService.registerAsCompany(
             map,
             cities,
+            governorates,
             image,
             tax_number_image,
             commercial_number_image
@@ -102,6 +108,11 @@ class AppRepository @Inject constructor(private val apiService: ApiService) {
         map: HashMap<String, Any>
     ): Observable<MyData<ArrayList<ClientModel>>> {
         return apiService.getAllClients(map)
+    }
+    fun getClientDetails(
+        id: String
+    ): Observable<MyData<ClientModel>> {
+        return apiService.getClientDetails(id)
     }
 
     fun getClients(

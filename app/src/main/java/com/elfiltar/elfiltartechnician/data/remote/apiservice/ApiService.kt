@@ -23,6 +23,7 @@ interface ApiService {
     fun registerAsTechnician(
         @PartMap map: HashMap<String, @JvmSuppressWildcards RequestBody>,
         @Part("cities[]") cities: ArrayList<Int>,
+        @Part("governorates[]") governorates: ArrayList<Int>,
         @Part image: MultipartBody.Part,
         @Part nationality_id_image: MultipartBody.Part
     ): Observable<MyData<ProfileModel>>
@@ -32,6 +33,7 @@ interface ApiService {
     fun updateProfile(
         @PartMap map: HashMap<String, @JvmSuppressWildcards RequestBody>,
         @Part("cities[]") cities: ArrayList<Int>,
+        @Part("governorates[]") governorates: ArrayList<Int>,
         @Part image: MultipartBody.Part? = null,
         @Part nationality_id_image: MultipartBody.Part? = null,
         @Part tax_number_image: MultipartBody.Part? = null,
@@ -43,6 +45,7 @@ interface ApiService {
     fun registerAsCompany(
         @PartMap map: HashMap<String, @JvmSuppressWildcards RequestBody>,
         @Part("cities[]") cities: ArrayList<Int>,
+        @Part("governorates[]") governorates: ArrayList<Int>,
         @Part image: MultipartBody.Part,
         @Part tax_number_image: MultipartBody.Part,
         @Part commercial_number_image: MultipartBody.Part
@@ -164,6 +167,11 @@ interface ApiService {
     fun getAllClients(
         @QueryMap() map: HashMap<String, @JvmSuppressWildcards Any>
     ): Observable<MyData<ArrayList<ClientModel>>>
+
+    @GET("technicianClientDetails")
+    fun getClientDetails(
+        @Query("client_id")id: String
+    ): Observable<MyData<ClientModel>>
 
     @GET("searchInTechnicianClients")
     fun getClients(

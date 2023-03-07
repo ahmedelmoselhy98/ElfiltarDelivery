@@ -85,6 +85,15 @@ class MaintenanceAddClientActivity : BaseActivity() {
         bodyMap["phone"] = binding.etPhone.text.toString()
         if (binding.tvDateOfContract.isValid)
             bodyMap["date_of_contract"] = binding.tvDateOfContract.apiDate
+        else {
+            MyUtils.shoMsg(
+                this,
+                getString(R.string.date_of_contract) + " " + getString(R.string.error_message_required),
+                MotionToast.TOAST_ERROR
+            )
+            return
+        }
+
         bodyMap["status"] = if (binding.switchStatus.isChecked) 1 else 0
 
         var datesList = ArrayList<String>()
@@ -216,7 +225,8 @@ class MaintenanceAddClientActivity : BaseActivity() {
                 binding.numberOfStages = item.id
                 bodyMap["stages_number"] = list[position].id!!
                 binding.sectionCandle.visibility = View.VISIBLE
-                setDatesCurrent()},
+                setDatesCurrent()
+            },
             onItemUnSelected = { position, item ->
                 binding.numberOfStages = 0
                 bodyMap.remove("stages_number")

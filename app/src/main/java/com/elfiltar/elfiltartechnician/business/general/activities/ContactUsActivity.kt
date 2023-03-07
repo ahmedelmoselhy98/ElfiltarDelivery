@@ -39,9 +39,6 @@ class ContactUsActivity : BaseActivity() {
 
     private fun contactUs() {
         map["message"] = binding.etMessage.text.toString()
-        map["address"] = binding.etAddress.text.toString()
-        map["phone"] = binding.etPhone.text.toString()
-        map["name"] = binding.etName.text.toString()
         appViewModel.contactUs(map, onResult = {
             MyUtils.shoMsg(this,getString(R.string.success),MotionToast.TOAST_SUCCESS)
             finish()
@@ -50,9 +47,6 @@ class ContactUsActivity : BaseActivity() {
 
     private fun getInputsUiList(): ArrayList<BaseInput> {
         var inputsList = ArrayList<BaseInput>()
-        inputsList.add(binding.etName)
-        inputsList.add(binding.etPhone)
-        inputsList.add(binding.etAddress)
         inputsList.add(binding.etMessage)
         return inputsList
     }

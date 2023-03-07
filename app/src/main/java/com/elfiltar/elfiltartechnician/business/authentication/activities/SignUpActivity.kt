@@ -1,6 +1,7 @@
 package com.elfiltar.elfiltartechnician.business.authentication.activities
 
 import android.content.Intent
+import android.net.Uri
 import android.view.View
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
@@ -20,6 +21,7 @@ import com.elfiltar.elfiltartechnician.commons.helpers.CheckPermissionsHelper
 import com.elfiltar.elfiltartechnician.commons.helpers.MyConstants
 import com.elfiltar.elfiltartechnician.commons.helpers.MyUtils
 import com.elfiltar.elfiltartechnician.databinding.ActivitySignUpBinding
+import com.nguyenhoanglam.imagepicker.ui.imagepicker.registerImagePicker
 import okhttp3.MultipartBody
 import www.sanju.motiontoast.MotionToast
 
@@ -30,10 +32,15 @@ class SignUpActivity : BaseActivity() {
     lateinit var binding: ActivitySignUpBinding
     private val appViewModel: AppViewModel by viewModels()
 
-    lateinit var adapter: SelectedCityAdapter
-    var dataList = ArrayList<BaseModel>()
+    lateinit var citiesAdapter: SelectedCityAdapter
+    private var citiesList = ArrayList<BaseModel>()
     var cities = ArrayList<Int>()
     var registerBody = HashMap<String, Any>()
+
+    lateinit var governorateAdapter: SelectedCityAdapter
+    private var governorateList = ArrayList<BaseModel>()
+    var governorates = ArrayList<Int>()
+
 
     var image: MultipartBody.Part? = null
     var tax_number_image: MultipartBody.Part? = null
@@ -51,21 +58,20 @@ class SignUpActivity : BaseActivity() {
 
     override fun init() {
         registerBody["type"] = MyConstants.Enums.UserType.company
-        if (intent.getStringExtra("phone") != null)
-            binding.etPhone.setText(intent.getStringExtra("phone")!!)
-        if (intent.getStringExtra("phone_code") != null)
-            binding.countryCodePicker.setCountryForPhoneCode(
-                intent.getStringExtra("phone_code")!!.toInt()
-            )
+        if (intent.getStringExtra("phone") != null) binding.etPhone.setText(intent.getStringExtra("phone")!!)
+        if (intent.getStringExtra("phone_code") != null) binding.countryCodePicker.setCountryForPhoneCode(
+            intent.getStringExtra("phone_code")!!.toInt()
+        )
         setUpPageActions()
-        setUpList()
+        setUpGovernoratesList()
+        setUpCitiesList()
         setUpObserver()
     }
 
     fun getPhone(): String {
         var phone = ""
-        if (binding.etPhone.text.toString().length > 1)
-            phone = if (binding.etPhone.text.toString()[0] == '0') {
+        if (binding.etPhone.text.toString().length > 1) phone =
+            if (binding.etPhone.text.toString()[0] == '0') {
                 binding.etPhone.text.toString().substring(1)
             } else binding.etPhone.text.toString()
         return phone
@@ -80,18 +86,14 @@ class SignUpActivity : BaseActivity() {
                     this, getInputsUiList()
                 )
             ) return@setOnClickListener
-            if (image == null) {
+            else if (image == null) {
                 MyUtils.shoMsg(this, getString(R.string.profile_image), MotionToast.TOAST_ERROR)
                 return@setOnClickListener
-            }
-            if (registerBody["type"] == MyConstants.Enums.UserType.company) {
+            } else if (registerBody["type"] == MyConstants.Enums.UserType.company) {
                 if (tax_number_image == null) {
-                    MyUtils.shoMsg(
-                        this, getString(R.string.tax_registry_image), MotionToast.TOAST_ERROR
-                    )
+                    MyUtils.shoMsg(this, getString(R.string.tax_registry_image), MotionToast.TOAST_ERROR)
                     return@setOnClickListener
-                }
-                if (commercial_number_image == null) {
+                } else if (commercial_number_image == null) {
                     MyUtils.shoMsg(
                         this, getString(R.string.commercial_registry_image), MotionToast.TOAST_ERROR
                     )
@@ -104,6 +106,22 @@ class SignUpActivity : BaseActivity() {
                     )
                     return@setOnClickListener
                 }
+            }
+            if (registerBody["governorate_id"] == null) {
+                MyUtils.shoMsg(
+                    this,
+                    getString(R.string.governorate) + " " + getString(R.string.error_message_required),
+                    MotionToast.TOAST_ERROR
+                )
+                return@setOnClickListener
+            }
+            if (governorates.isNullOrEmpty()) {
+                MyUtils.shoMsg(
+                    this,
+                    getString(R.string.selected_governorates) + " " + getString(R.string.error_message_required),
+                    MotionToast.TOAST_ERROR
+                )
+                return@setOnClickListener
             }
             register()
         }
@@ -152,14 +170,53 @@ class SignUpActivity : BaseActivity() {
 
     private fun setUpObserver() {
         setUpGovernorateSelection()
+        setUpMyGovernorateSelection()
+    }
+
+    val launcher = registerImagePicker { images ->
+        // Selected images are ready to use
+        appViewModel.isLoading.postValue(false)
+        if (!images.isNullOrEmpty()) {
+            images[0]?.let {
+                handleImages(it.uri)
+            }
+        }
+
+    }
+
+    private fun handleImages(uri: Uri) {
+        when (imageTyp) {
+            "image" -> {
+                image = CameraGalleryHelper.getImageSelectionMultipart(
+                    this, uri, "image"
+                )
+                binding.ivProfile.setImageURI(uri)
+            }
+            "nationality_id_image" -> {
+                nationality_id_image = CameraGalleryHelper.getImageSelectionMultipart(
+                    this, uri, "nationality_id_image"
+                )
+                binding.ivIdentityImage.setImageURI(uri)
+            }
+            "tax_number_image" -> {
+                tax_number_image = CameraGalleryHelper.getImageSelectionMultipart(
+                    this, uri, "tax_number_image"
+                )
+                binding.ivTaxRegistryImage.setImageURI(uri)
+            }
+            "commercial_number_image" -> {
+                commercial_number_image = CameraGalleryHelper.getImageSelectionMultipart(
+                    this, uri, "commercial_number_image"
+                )
+                binding.ivCommercialRegistryImage.setImageURI(uri)
+            }
+        }
     }
 
     private fun selectPicture() {
         if (CheckPermissionsHelper.isCameraPermissionGranted(this)) {
             appViewModel.isLoading.postValue(true)
-            CameraGalleryDialog(this, click = {
-                appViewModel.isLoading.postValue(false)
-            }).show()
+            CameraGalleryHelper.openImagesPicker(this, launcher)
         }
     }
 
@@ -168,22 +225,21 @@ class SignUpActivity : BaseActivity() {
         registerBody["phone_code"] = binding.countryCodePicker.selectedCountryCode
         registerBody["phone"] = getPhone()
         registerBody["address"] = binding.etLocation.text.toString()
-        registerBody["cities"] = cities
-        if (registerBody["type"] == MyConstants.Enums.UserType.technician)
-            appViewModel.registerAsTechnician(
-                MyUtils.toRequestBodyMap(registerBody),
-                cities,
-                image!!,
-                nationality_id_image!!,
-                onResult = {
-                    sessionHelper.setUserSession(it)
-                    startActivity(Intent(this, MainActivity::class.java))
-                    finishAffinity()
-                })
+        if (registerBody["type"] == MyConstants.Enums.UserType.technician) appViewModel.registerAsTechnician(
+            MyUtils.toRequestBodyMap(registerBody),
+            cities,
+            governorates,
+            image!!,
+            nationality_id_image!!,
+            onResult = {
+                sessionHelper.setUserSession(it)
+                startActivity(Intent(this, MainActivity::class.java))
+                finishAffinity()
+            })
         else {
-            appViewModel.registerAsCompany(
-                MyUtils.toRequestBodyMap(registerBody),
+            appViewModel.registerAsCompany(MyUtils.toRequestBodyMap(registerBody),
                 cities,
+                governorates,
                 image!!,
                 tax_number_image!!,
                 commercial_number_image!!,
@@ -196,10 +252,29 @@ class SignUpActivity : BaseActivity() {
 
     }
 
+    private fun setUpMyGovernorateSelection() {
+        appViewModel.getGovernorateWithCities(onResult = { list ->
+            UtilsCustomExpandable.setUpExpandList(this,
+                binding.includeSelectionMyGovernorate.recyclerView,
+                list,
+                binding.includeSelectionMyGovernorate.viewExpand,
+                getString(R.string.governorate),
+                binding.includeSelectionMyGovernorate.tvTitle,
+                binding.includeSelectionMyGovernorate.tvEmpty,
+                binding.includeSelectionMyGovernorate.etSearch,
+                0,
+                onItemSelected = { position, item ->
+                    registerBody["governorate_id"] = item.id!!
+                },
+                onItemUnSelected = { position, item ->
+                    registerBody.remove("governorate_id")
+                })
+        })
+    }
+
     private fun setUpGovernorateSelection() {
         appViewModel.getGovernorateWithCities(onResult = { list ->
-            UtilsCustomExpandable.setUpExpandList(
-                this,
+            UtilsCustomExpandable.setUpExpandList(this,
                 binding.includeSelectionGovernorate.recyclerView,
                 list,
                 binding.includeSelectionGovernorate.viewExpand,
@@ -209,24 +284,22 @@ class SignUpActivity : BaseActivity() {
                 binding.includeSelectionGovernorate.etSearch,
                 0,
                 onItemSelected = { position, item ->
-                    registerBody["governorate_id"] = list[position].id!!
-                    if (!list[position].cities.isNullOrEmpty())
-                        setUpCitySelection(list[position].cities!!)
-                    registerBody["governorate_id"] = list[position].id!!
-                    if (!list[position].cities.isNullOrEmpty())
-                        setUpCitySelection(list[position].cities!!)
+                    governorateList.add(list[position])
+                    governorates.add(list[position].id!!)
+                    governorateAdapter.replaceDataList(governorateList)
+                    if (!list[position].cities.isNullOrEmpty()) setUpCitySelection(list[position].cities!!)
                 },
                 onItemUnSelected = { position, item ->
-                    registerBody.remove("governorate_id")
+                    governorateList.remove(list[position])
+                    governorates.remove(list[position].id!!)
+                    governorateAdapter.replaceDataList(governorateList)
                     setUpCitySelection(ArrayList())
-                }
-            )
+                })
         })
     }
 
     private fun setUpCitySelection(list: ArrayList<BaseModel>) {
-        UtilsCustomExpandable.setUpExpandList(
-            this,
+        UtilsCustomExpandable.setUpExpandList(this,
             binding.includeSelectionCity.recyclerView,
             list,
             binding.includeSelectionCity.viewExpand,
@@ -236,25 +309,33 @@ class SignUpActivity : BaseActivity() {
             binding.includeSelectionCity.etSearch,
             0,
             onItemSelected = { position, item ->
-                dataList.add(list[position])
+                citiesList.add(list[position])
                 cities.add(list[position].id!!)
-                adapter.replaceDataList(dataList)
+                citiesAdapter.replaceDataList(citiesList)
             },
             onItemUnSelected = { position, item ->
-                dataList.remove(list[position])
+                citiesList.remove(list[position])
                 cities.remove(list[position].id!!)
-                adapter.replaceDataList(dataList)
-            }
-        )
+                citiesAdapter.replaceDataList(citiesList)
+            })
     }
 
-    private fun setUpList() {
-        adapter = SelectedCityAdapter(dataList) { position, orderModel ->
-            dataList.remove(orderModel)
-            adapter.removeItem(position)
+    private fun setUpGovernoratesList() {
+        governorateAdapter = SelectedCityAdapter(governorateList) { position, orderModel ->
+            governorateList.remove(orderModel)
+            governorateAdapter.removeItem(position)
         }
-        binding.recyclerView.adapter = adapter
-        binding.recyclerView.layoutManager = GridLayoutManager(this, 3)
+        binding.governoratesRecyclerView.adapter = governorateAdapter
+        binding.governoratesRecyclerView.layoutManager = GridLayoutManager(this, 3)
+    }
+
+    private fun setUpCitiesList() {
+        citiesAdapter = SelectedCityAdapter(citiesList) { position, orderModel ->
+            citiesList.remove(orderModel)
+            citiesAdapter.removeItem(position)
+        }
+        binding.citiesRecyclerView.adapter = citiesAdapter
+        binding.citiesRecyclerView.layoutManager = GridLayoutManager(this, 3)
     }
 
     private fun getInputsUiList(): ArrayList<BaseInput> {
@@ -269,43 +350,13 @@ class SignUpActivity : BaseActivity() {
     override fun onRequestPermissionsResult(
         requestCode: Int, permissions: Array<String>, grantResults: IntArray
     ) {
-        CheckPermissionsHelper.handleCameraPermissionResult(this,
+        CheckPermissionsHelper.handleCameraPermissionResult(
+            this,
             permissions,
             grantResults,
             onPermissionGranted = {
                 selectPicture()
             })
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (data != null && data.data != null) when (imageTyp) {
-            "image" -> {
-                image = CameraGalleryHelper.getImageSelectionMultipart(
-                    this, data.data!!, "image"
-                )
-                binding.ivProfile.setImageURI(data.data)
-            }
-            "nationality_id_image" -> {
-                nationality_id_image = CameraGalleryHelper.getImageSelectionMultipart(
-                    this, data.data!!, "nationality_id_image"
-                )
-                binding.ivIdentityImage.setImageURI(data.data)
-            }
-            "tax_number_image" -> {
-                tax_number_image = CameraGalleryHelper.getImageSelectionMultipart(
-                    this, data.data!!, "tax_number_image"
-                )
-                binding.ivTaxRegistryImage.setImageURI(data.data)
-            }
-            "commercial_number_image" -> {
-                commercial_number_image = CameraGalleryHelper.getImageSelectionMultipart(
-                    this, data.data!!, "commercial_number_image"
-                )
-                binding.ivCommercialRegistryImage.setImageURI(data.data)
-            }
-        }
-        appViewModel.isLoading.postValue(false)
     }
 }

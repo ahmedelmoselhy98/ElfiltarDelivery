@@ -1,6 +1,7 @@
 package com.elfiltar.elfiltartechnician.business.delivery.activities
 
 import android.view.View
+import android.widget.TextView
 import androidx.activity.viewModels
 import com.elfiltar.elfiltartechnician.R
 import com.elfiltar.elfiltartechnician.base.BaseActivity
@@ -68,6 +69,7 @@ class ClientsUpdateClientActivity : BaseActivity() {
         bodyMap["address"] = binding.etLocation.text.toString()
         bodyMap["phone_code"] = binding.countryCodePicker.selectedCountryCode
         bodyMap["phone"] = binding.etPhone.text.toString()
+        bodyMap["notes"] = binding.etNotes.text.toString()
         if (binding.tvDateOfContract.isValid)
             bodyMap["date_of_contract"] = binding.tvDateOfContract.apiDate
         bodyMap["status"] = if (binding.switchStatus.isChecked) 1 else 0
@@ -85,8 +87,9 @@ class ClientsUpdateClientActivity : BaseActivity() {
         var inputsList = ArrayList<BaseInput>()
         inputsList.add(binding.etFirstName)
         inputsList.add(binding.etLastName)
-        inputsList.add(binding.etLocation)
         inputsList.add(binding.etPhone)
+        inputsList.add(binding.etLocation)
+        inputsList.add(binding.etNotes)
         return inputsList
     }
 

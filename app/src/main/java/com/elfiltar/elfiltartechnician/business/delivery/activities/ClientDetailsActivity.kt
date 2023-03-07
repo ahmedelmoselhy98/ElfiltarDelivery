@@ -35,14 +35,25 @@ class ClientDetailsActivity : BaseActivity() {
     }
 
     override fun init() {
+        clientModel = Gson().fromJson(intent.getStringExtra("client"), ClientModel::class.java)
         setUpList()
         setUpPageActions()
-        clientModel = Gson().fromJson(intent.getStringExtra("client"), ClientModel::class.java)
-        binding.client = clientModel
-        queryMap["technician_client_id"] = clientModel.id!!
-        binding.tvLocation.text = if (clientModel.governorate == null) "${clientModel.address}"
-        else "${clientModel.governorate!!.title} -${clientModel.city!!.title} - ${clientModel.address}"
-        getAlarms()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        setUpObservers()
+    }
+
+    private fun setUpObservers() {
+        appViewModel.getClientDetails("" + clientModel.id) {
+            clientModel = it
+            binding.client = clientModel
+            queryMap["technician_client_id"] = clientModel.id!!
+            binding.tvLocation.text = if (clientModel.governorate == null) "${clientModel.address}"
+            else "${clientModel.governorate!!.title} -${clientModel.city!!.title} - ${clientModel.address}"
+            getAlarms()
+        }
     }
 
     private fun getAlarms() {
@@ -73,10 +84,10 @@ class ClientDetailsActivity : BaseActivity() {
             }).show()
         }
         binding.btnWhatsApp.setOnClickListener {
-            MyUtils.openWhatsApp(this, clientModel.phone!!)
+            MyUtils.openWhatsApp(this, clientModel.phone_code!! + clientModel.phone!!)
         }
         binding.btnCall.setOnClickListener {
-            MyUtils.callPhoneNumber(this, clientModel.phone!!)
+            MyUtils.callPhoneNumber(this, clientModel.phone_code!! + clientModel.phone!!)
         }
         binding.btnEdit.setOnClickListener {
             startActivity(

@@ -28,6 +28,7 @@ class MaintenanceUpdateClientActivity : BaseActivity() {
     private val appViewModel: AppViewModel by viewModels()
     var bodyMap = HashMap<String, Any>()
     var clientModel = ClientModel()
+    var datesList = ArrayList<String>()
 
     override fun setUpLayoutView(): View {
         binding = ActivityMaintenanceUpdateClientBinding.inflate(layoutInflater)
@@ -39,16 +40,17 @@ class MaintenanceUpdateClientActivity : BaseActivity() {
     override fun init() {
         clientModel = Gson().fromJson(intent!!.getStringExtra("client"), ClientModel::class.java)
         binding.item = clientModel
-        if (clientModel.id != null)
-            bodyMap["client_id"] = clientModel.id!!
+        if (clientModel.id != null) bodyMap["client_id"] = clientModel.id!!
         bodyMap["stages_number"] = clientModel.stages_number!!
         binding.numberOfStages = clientModel.stages_number!!
         bodyMap["city_id"] = clientModel.city_id!!
         bodyMap["governorate_id"] = clientModel.governorate_id!!
         bodyMap["water_quality_id"] = clientModel.water_quality!!.id!!
 
-        clientModel
-
+        clientModel.maintenance_filter_dates?.forEachIndexed { index, filterCandleModel ->
+            getDatesView()[index].text = filterCandleModel.date
+            datesList.add(filterCandleModel.date!!)
+        }
         MyUtils.executeDelay(500, onExecute = {
             binding.includeSelectionNumberOfStages.tvTitle.text = "" + clientModel.stages_number!!
             binding.includeSelectionWaterQuality.tvTitle.text =
@@ -75,12 +77,10 @@ class MaintenanceUpdateClientActivity : BaseActivity() {
             }
         }
         binding.cbDate.setOnCheckedChangeListener { compoundButton, isChecked ->
-            if (compoundButton.isPressed)
-                if (isChecked)
-                    resetDates()
-                else {
-                    setDatesCurrent()
-                }
+            if (compoundButton.isPressed) if (isChecked) resetDates()
+            else {
+                setDatesCurrent()
+            }
         }
     }
 
@@ -89,37 +89,47 @@ class MaintenanceUpdateClientActivity : BaseActivity() {
         bodyMap["last_name"] = binding.etLastName.text.toString()
         bodyMap["address"] = binding.etLocation.text.toString()
         bodyMap["phone_code"] = binding.countryCodePicker.selectedCountryCode
-        bodyMap["date_of_contract"] = binding.tvDateOfContract.apiDate
-        if (binding.tvDateOfContract.isValid)
-            bodyMap["phone"] = binding.etPhone.text.toString()
+        if (binding.tvDateOfContract.isValid) bodyMap["date_of_contract"] =
+            binding.tvDateOfContract.apiDate
+        bodyMap["phone"] = binding.etPhone.text.toString()
         bodyMap["status"] = if (binding.switchStatus.isChecked) 1 else 0
-
-        var datesList = ArrayList<String>()
-        if (binding.tvDate1.isValid)
-            datesList.add(binding.tvDate1.apiDate)
-        if (binding.tvDate2.isValid)
-            datesList.add(binding.tvDate2.apiDate)
-        if (binding.tvDate3.isValid)
-            datesList.add(binding.tvDate3.apiDate)
-        if (binding.tvDate4.isValid)
-            datesList.add(binding.tvDate4.apiDate)
-        if (binding.tvDate5.isValid)
-            datesList.add(binding.tvDate5.apiDate)
-        if (binding.tvDate6.isValid)
-            datesList.add(binding.tvDate6.apiDate)
-        if (binding.tvDate7.isValid)
-            datesList.add(binding.tvDate7.apiDate)
-
+        if (binding.tvDate1.isValid) {
+            if (datesList.size == 0) datesList.add(binding.tvDate1.apiDate)
+            else datesList[0] = binding.tvDate1.apiDate
+        }
+        if (binding.tvDate2.isValid) {
+            if (datesList.size == 1) datesList.add(binding.tvDate2.apiDate)
+            else datesList[1] = binding.tvDate2.apiDate
+        }
+        if (binding.tvDate3.isValid) {
+            if (datesList.size == 2) datesList.add(binding.tvDate3.apiDate)
+            else datesList[2] = binding.tvDate3.apiDate
+        }
+        if (binding.tvDate4.isValid) {
+            if (datesList.size == 3) datesList.add(binding.tvDate4.apiDate)
+            else datesList[3] = binding.tvDate4.apiDate
+        }
+        if (binding.tvDate5.isValid) {
+            if (datesList.size == 4) datesList.add(binding.tvDate5.apiDate)
+            else datesList[4] = binding.tvDate5.apiDate
+        }
+        if (binding.tvDate6.isValid) {
+            if (datesList.size == 5) datesList.add(binding.tvDate6.apiDate)
+            else datesList[5] = binding.tvDate6.apiDate
+        }
+        if (binding.tvDate7.isValid) {
+            if (datesList.size == 6) datesList.add(binding.tvDate7.apiDate)
+            else datesList[6] = binding.tvDate7.apiDate
+        }
         if (binding.cbDate.isChecked) {
-
+            bodyMap["is_remember_dates"] = 1
             if (!datesList.isNullOrEmpty()) {
-                bodyMap["is_remember_dates"] = 1
                 bodyMap["dates"] = datesList
-            } else MyUtils.shoMsg(
-                this,
-                getString(R.string.choose_changes_dates),
-                MotionToast.TOAST_ERROR
-            )
+            } else {
+                if (clientModel.maintenance_filter_dates.isNullOrEmpty()) MyUtils.shoMsg(
+                    this, getString(R.string.choose_changes_dates), MotionToast.TOAST_ERROR
+                )
+            }
         } else {
             datesList.add(MyUtils.formatDate(Date()))
             bodyMap["is_remember_dates"] = 0
@@ -127,9 +137,7 @@ class MaintenanceUpdateClientActivity : BaseActivity() {
         }
         appViewModel.updateMaintenanceClient(bodyMap, onResult = {
             MyUtils.shoMsg(
-                this,
-                getString(R.string.success),
-                MotionToast.TOAST_SUCCESS
+                this, getString(R.string.success), MotionToast.TOAST_SUCCESS
             )
             finish()
         })
@@ -146,8 +154,7 @@ class MaintenanceUpdateClientActivity : BaseActivity() {
 
     private fun setUpGovernorateSelection() {
         appViewModel.getGovernorateWithCities(onResult = { list ->
-            UtilsCustomExpandable.setUpExpandList(
-                this,
+            UtilsCustomExpandable.setUpExpandList(this,
                 binding.includeSelectionGovernorate.recyclerView,
                 list,
                 binding.includeSelectionGovernorate.viewExpand,
@@ -158,20 +165,17 @@ class MaintenanceUpdateClientActivity : BaseActivity() {
                 0,
                 onItemSelected = { position, item ->
                     bodyMap["governorate_id"] = list[position].id!!
-                    if (!list[position].cities.isNullOrEmpty())
-                        setUpCitySelection(list[position].cities!!)
+                    if (!list[position].cities.isNullOrEmpty()) setUpCitySelection(list[position].cities!!)
                 },
                 onItemUnSelected = { position, item ->
                     bodyMap.remove("governorate_id")
                     setUpCitySelection(ArrayList())
-                }
-            )
+                })
         })
     }
 
     private fun setUpCitySelection(list: ArrayList<BaseModel>) {
-        UtilsCustomExpandable.setUpExpandList(
-            this,
+        UtilsCustomExpandable.setUpExpandList(this,
             binding.includeSelectionCity.recyclerView,
             list,
             binding.includeSelectionCity.viewExpand,
@@ -185,14 +189,12 @@ class MaintenanceUpdateClientActivity : BaseActivity() {
             },
             onItemUnSelected = { position, item ->
                 bodyMap.remove("city_id")
-            }
-        )
+            })
     }
 
     private fun setUpWaterSelection() {
         appViewModel.getWaterQualities(onResult = { list ->
-            UtilsCustomExpandable.setUpExpandList(
-                this,
+            UtilsCustomExpandable.setUpExpandList(this,
                 binding.includeSelectionWaterQuality.recyclerView,
                 list,
                 binding.includeSelectionWaterQuality.viewExpand,
@@ -206,15 +208,13 @@ class MaintenanceUpdateClientActivity : BaseActivity() {
                 },
                 onItemUnSelected = { position, item ->
                     bodyMap.remove("water_quality_id")
-                }
-            )
+                })
         })
     }
 
     private fun setUpStagesSelection() {
         val list = getStagesNumberList()
-        UtilsCustomExpandable.setUpExpandList(
-            this,
+        UtilsCustomExpandable.setUpExpandList(this,
             binding.includeSelectionNumberOfStages.recyclerView,
             list,
             binding.includeSelectionNumberOfStages.viewExpand,
@@ -227,34 +227,24 @@ class MaintenanceUpdateClientActivity : BaseActivity() {
                 binding.numberOfStages = item.id
                 bodyMap["stages_number"] = list[position].id!!
                 binding.sectionCandle.visibility = View.VISIBLE
-                setDatesCurrent()
             },
             onItemUnSelected = { position, item ->
                 binding.numberOfStages = 0
                 bodyMap.remove("stages_number")
                 binding.sectionCandle.visibility = View.GONE
-                resetDates()
-            }
-        )
+            })
     }
 
 
     fun setDatesCurrent() {
         bodyMap["stages_number"]?.let {
-            if (it.toString().toInt() >= 1)
-                binding.tvDate1.setDates(Date())
-            if (it.toString().toInt() >= 2)
-                binding.tvDate2.setDates(Date())
-            if (it.toString().toInt() >= 3)
-                binding.tvDate3.setDates(Date())
-            if (it.toString().toInt() >= 4)
-                binding.tvDate4.setDates(Date())
-            if (it.toString().toInt() >= 5)
-                binding.tvDate5.setDates(Date())
-            if (it.toString().toInt() >= 6)
-                binding.tvDate6.setDates(Date())
-            if (it.toString().toInt() >= 7)
-                binding.tvDate7.setDates(Date())
+            if (it.toString().toInt() >= 1) binding.tvDate1.setDates(Date())
+            if (it.toString().toInt() >= 2) binding.tvDate2.setDates(Date())
+            if (it.toString().toInt() >= 3) binding.tvDate3.setDates(Date())
+            if (it.toString().toInt() >= 4) binding.tvDate4.setDates(Date())
+            if (it.toString().toInt() >= 5) binding.tvDate5.setDates(Date())
+            if (it.toString().toInt() >= 6) binding.tvDate6.setDates(Date())
+            if (it.toString().toInt() >= 7) binding.tvDate7.setDates(Date())
         }
     }
 
@@ -268,7 +258,8 @@ class MaintenanceUpdateClientActivity : BaseActivity() {
         binding.tvDate7.reset()
         binding.tvDate7.reset()
     }
-    fun getDatesView(): ArrayList<TextView>{
+
+    fun getDatesView(): ArrayList<TextView> {
         var viewList = ArrayList<TextView>()
         viewList.add(binding.tvDate1)
         viewList.add(binding.tvDate2)
@@ -282,13 +273,12 @@ class MaintenanceUpdateClientActivity : BaseActivity() {
 
     private fun getStagesNumberList(): ArrayList<BaseModel> {
         var list = ArrayList<BaseModel>()
-        if (sessionHelper.getUserSession()!!.candles_count != null && sessionHelper.getUserSession()!!.candles_count!! > 0)
-            for (position in 1..sessionHelper.getUserSession()!!.candles_count!!) {
-                val stage = BaseModel()
-                stage.id = position
-                stage.title = "" + position
-                list.add(stage)
-            }
+        if (sessionHelper.getUserSession()!!.candles_count != null && sessionHelper.getUserSession()!!.candles_count!! > 0) for (position in 1..sessionHelper.getUserSession()!!.candles_count!!) {
+            val stage = BaseModel()
+            stage.id = position
+            stage.title = "" + position
+            list.add(stage)
+        }
         return list
     }
 

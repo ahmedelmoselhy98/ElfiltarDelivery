@@ -43,10 +43,10 @@ class HeaderInterceptor : Interceptor {
             .addHeader("Accept", "application/json")
         try {
             if (sessionHelper.getPushNotificationToken() != null) {
-                builder.addHeader("firebase_token", sessionHelper.getPushNotificationToken()!!)
+                builder.addHeader("FirebaseToken", sessionHelper.getPushNotificationToken()!!)
             }
             if (sessionHelper.getUserSession() != null) {
-                builder.addHeader("technician_id", ""+sessionHelper.getUserSession()!!.id)
+                builder.addHeader("TechnicianId", ""+sessionHelper.getUserSession()!!.id)
             }
             request = builder.build()
         } catch (e: Exception) {

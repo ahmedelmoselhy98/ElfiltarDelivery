@@ -65,6 +65,10 @@ open class ClientModel : BaseModel() {
     @Expose
     var water_quality: WaterQualityModel? = null
 
+    @SerializedName("maintenance_filter_dates")
+    @Expose
+    var maintenance_filter_dates = ArrayList<FilterCandleModel>()
+
     @SerializedName("type")
     @Expose
     var type: String? = null

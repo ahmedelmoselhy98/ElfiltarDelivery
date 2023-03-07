@@ -37,13 +37,13 @@ class MainActivity : BaseActivity() {
 
     override fun init() {
         setUpList()
-        setUpProfile()
         setUpPageActions()
     }
 
     private fun getProfile() {
         appViewModel.getTechnicianProfile {
             sessionHelper.setUserSession(it)
+            binding.profile = it
             if (it.package_sub_end_days == 0) {
                 PackageSubscriptionEndSheet(this, onConfirm = {
                     startActivity(Intent(this, PackagesActivity::class.java))
@@ -73,10 +73,6 @@ class MainActivity : BaseActivity() {
             adapter.replaceDataList(dataList)
             binding.recyclerView.visibility = View.VISIBLE
         })
-    }
-
-    private fun setUpProfile() {
-        binding.profile = sessionHelper.getUserSession()
     }
 
     private fun setUpPageActions() {

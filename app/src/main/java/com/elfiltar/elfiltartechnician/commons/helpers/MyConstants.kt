@@ -20,7 +20,7 @@ class MyConstants {
         //User Type
         object UserType {
             const val company = "company"
-            const val technician = "literal"
+            const val technician = "technical"
         }
 
         //Order Status

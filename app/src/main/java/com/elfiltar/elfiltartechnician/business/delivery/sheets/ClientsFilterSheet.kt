@@ -41,9 +41,6 @@ class ClientsFilterSheet(
             if (binding.tvFrom.isValid)
                 map["toDate"] = binding.tvTo.apiDate
 
-            map["country_id"] = 1
-            map["governorate_id"] = 1
-            map["city_id"] = 1
             onConfirm()
             dismiss()
         }

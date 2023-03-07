@@ -75,47 +75,26 @@
       },
       "oauth_client": [
         {
+          "client_id": "556517599680-bcb5mttr3m9k7g0jc67n50h6qpiljbgv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.elfiltar.elfiltartechnician",
+            "certificate_hash": "a478bb36240ba5a05e10f7c7227d4dcb3247902c"
+          }
+        },
+        {
+          "client_id": "556517599680-ce8o1r1lejofd42jl8k1edi2s3eqeuip.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.elfiltar.elfiltartechnician",
+            "certificate_hash": "7d24589e9f6ca35ada2797941a5cd88b9cb50136"
+          }
+        },
+        {
           "client_id": "556517599680-lvc48cto5hipu6iev6u5etcd64av88ko.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.elfiltar.elfiltartechnician",
-            "certificate_hash": "0dbd042fb625d69903bf8aea8dd1a87c940281a2"
-          }
-        },
-        {
-          "client_id": "556517599680-kiphud2ct8upoom8qsqfrg4t4pd4n821.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAg5WSBHGfiZsyzRklS5FBIyuzZGkyVmGw"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "556517599680-kiphud2ct8upoom8qsqfrg4t4pd4n821.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:556517599680:android:dc9773635433d3a2498025",
-        "android_client_info": {
-          "package_name": "com.elmoselhy.elfiltardelivery"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "556517599680-seue00c3fqaif8gnre26j0lfj6supv9f.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.elmoselhy.elfiltardelivery",
             "certificate_hash": "0dbd042fb625d69903bf8aea8dd1a87c940281a2"
           }
         },

@@ -85,6 +85,10 @@ class ProfileModel : BaseModel() {
     @Expose
     var cities: ArrayList<BaseModel>? = null
 
+    @SerializedName("governorates")
+    @Expose
+    var governorates: ArrayList<BaseModel>? = null
+
     @SerializedName("subscription_end")
     @Expose
     var subscription_end: String? = null

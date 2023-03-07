@@ -1,15 +1,22 @@
 package com.elfiltar.elfiltartechnician.commons.rx
 
+import com.elfiltar.elfiltartechnician.R
 import com.elfiltar.elfiltartechnician.base.BaseViewModel
 import com.elfiltar.elfiltartechnician.commons.events.PhoneNotRegisteredEvent
 import com.elfiltar.elfiltartechnician.commons.models.BaseErrorModel
 import com.elfiltar.elfiltartechnician.commons.models.ServerErrorModel
+import com.elfiltar.elfiltartechnician.data.local.session.SessionHelper
 import com.elfiltar.elfiltartechnician.data.remote.apiservice.MyData
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.observers.DefaultObserver
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import javax.inject.Inject
 
-
+//@ExperimentalCoroutinesApi
+//@HiltViewModel
 abstract class CustomRxObserver<T>(var baseViewModel: BaseViewModel) : DefaultObserver<Any?>() {
-
+    @Inject
+    lateinit var sessionHelper: SessionHelper
     init {
         baseViewModel.isLoading.postValue(true)
     }
@@ -72,7 +79,10 @@ abstract class CustomRxObserver<T>(var baseViewModel: BaseViewModel) : DefaultOb
     override fun onError(e: Throwable) {
         e.printStackTrace()
         baseViewModel.isLoading.postValue(false)
-        var errorEvent = BaseErrorModel(500, "Server error")
+        var errorMsg = ""
+        errorMsg = "حسابك غير مفعل - تواصل معنا"
+//        errorMsg = "Your account not activated - Contact us"
+        var errorEvent = BaseErrorModel(500, errorMsg)
         var messageEvent = ServerErrorModel(
             errorEvent!!.status!!,
             errorEvent!!.message!!

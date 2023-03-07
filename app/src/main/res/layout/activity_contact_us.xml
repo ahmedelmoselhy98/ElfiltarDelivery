@@ -40,6 +40,7 @@
                 android:drawableStart="@drawable/icon_user_outline_circle"
                 android:drawablePadding="@dimen/_10sdp"
                 android:drawableTint="@color/icon_tint_primary"
+                android:visibility="gone"
                 android:hint="@string/public_name"
                 android:inputType="text" />
 
@@ -49,6 +50,7 @@
                 style="@style/BoxEditTextGrey"
                 android:drawableStart="@drawable/icon_phone_outline"
                 android:drawablePadding="@dimen/_10sdp"
+                android:visibility="gone"
                 android:drawableTint="@color/icon_tint_primary"
                 android:hint="@string/public_phone_number"
                 android:inputType="phone" />
@@ -58,6 +60,7 @@
                 style="@style/BoxEditTextGrey"
                 android:drawableStart="@drawable/icon_feather"
                 android:drawablePadding="@dimen/_10sdp"
+                android:visibility="gone"
                 android:drawableTint="@color/icon_tint_primary"
                 android:hint="@string/public_address"
                 android:inputType="text" />

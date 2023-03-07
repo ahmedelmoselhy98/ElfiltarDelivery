@@ -207,5 +207,9 @@
     <string name="update_client">Update Client</string>
     <string name="caution_if_you_do_not_choose_any_city_all_cities_within_the_selected_governorate_will_be_selected">Caution: If you do not choose any city, all cities within the selected governorate will be selected</string>
     <string name="date_of_contract">Date of contract</string>
+    <string name="selected_governorates">Selected Governorates</string>
+    <string name="client_notes">Client Notes</string>
+    <string name="sales_process_notes">Sales Process Notes</string>
+    <string name="server_error_message">Server error</string>
 
 </resources>

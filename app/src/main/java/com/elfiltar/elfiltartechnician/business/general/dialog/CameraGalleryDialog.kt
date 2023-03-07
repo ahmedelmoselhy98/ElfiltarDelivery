@@ -21,17 +21,14 @@ class CameraGalleryDialog(
 
     private fun setUpPageAction() {
         binding.cameraLy.setOnClickListener {
-            CameraGalleryHelper.openCamera(mContext)
             click()
             dismiss()
         }
         binding.galleryLy.setOnClickListener {
-            CameraGalleryHelper.openGallery(mContext)
             click()
             dismiss()
         }
         binding.closeIv.setOnClickListener {
-            CameraGalleryHelper.openGallery(mContext)
             click()
             dismiss()
         }

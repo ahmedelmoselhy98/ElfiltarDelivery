@@ -40,13 +40,6 @@ class ClientsAddClientActivity : BaseActivity() {
         binding.btnAdd.setOnClickListener {
             if (!ElmoselhyInputHelper.checkIfInputsIsValid(this, getInputsUiList())) {
                 return@setOnClickListener
-            } else if (bodyMap["date_of_contract"] == null) {
-                MyUtils.shoMsg(
-                    this,
-                    getString(R.string.date_of_contract) + " " + getString(R.string.error_message_required),
-                    MotionToast.TOAST_ERROR
-                )
-                return@setOnClickListener
             } else if (bodyMap["governorate_id"] == null) {
                 MyUtils.shoMsg(
                     this,
@@ -72,8 +65,17 @@ class ClientsAddClientActivity : BaseActivity() {
         bodyMap["address"] = binding.etLocation.text.toString()
         bodyMap["phone_code"] = binding.countryCodePicker.selectedCountryCode
         bodyMap["phone"] = binding.etPhone.text.toString()
+        bodyMap["notes"] = binding.etNotes.text.toString()
         if (binding.tvDateOfContract.isValid)
             bodyMap["date_of_contract"] = binding.tvDateOfContract.apiDate
+        else {
+            MyUtils.shoMsg(
+                this,
+                getString(R.string.date_of_contract) + " " + getString(R.string.error_message_required),
+                MotionToast.TOAST_ERROR
+            )
+            return
+        }
         bodyMap["status"] = if (binding.switchStatus.isChecked) 1 else 0
         appViewModel.addClient(bodyMap, onResult = {
             MyUtils.shoMsg(
@@ -89,8 +91,9 @@ class ClientsAddClientActivity : BaseActivity() {
         var inputsList = ArrayList<BaseInput>()
         inputsList.add(binding.etFirstName)
         inputsList.add(binding.etLastName)
-        inputsList.add(binding.etLocation)
         inputsList.add(binding.etPhone)
+        inputsList.add(binding.etLocation)
+        inputsList.add(binding.etNotes)
         return inputsList
     }
 

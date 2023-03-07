@@ -227,6 +227,24 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_10sdp"
+                    android:text="@string/governorate"
+                    android:drawableStart="@drawable/icon_location_fill"
+                    android:textColor="@color/text_color_black"
+                    android:textSize="@dimen/_16ssp" />
+
+                <include
+                    android:id="@+id/include_selection_my_governorate"
+                    layout="@layout/include_drop_down_expandable_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:drawableStart="@drawable/icon_location_fill"
                     android:drawablePadding="@dimen/_8sdp"
                     android:drawableTint="@color/icon_tint_primary"
@@ -234,55 +252,52 @@
                     android:textColor="@color/text_color_black"
                     android:textSize="@dimen/_16ssp" />
 
-                <LinearLayout
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="@string/selected_governorates"
+                    android:textColor="@color/text_color_black"
+                    android:textSize="@dimen/_16ssp" />
+
+                <include
+                    android:id="@+id/include_selection_governorate"
+                    layout="@layout/include_drop_down_expandable_recycler"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_10sdp">
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    />
 
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/_10sdp"
-                        android:layout_weight="1">
 
-                        <include
-                            android:id="@+id/include_selection_governorate"
-                            layout="@layout/include_drop_down_expandable_recycler" />
-
-                    </FrameLayout>
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/_10sdp"
-                        android:layout_weight="1">
-
-                        <include
-                            android:id="@+id/include_selection_city"
-                            layout="@layout/include_drop_down_expandable_recycler" />
-
-                    </FrameLayout>
-                </LinearLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/governorates_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:spanCount="3"
+                    tools:listitem="@layout/item_layout_selected_city" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:text="@string/selected_cities"
                     android:textColor="@color/text_color_black"
                     android:textSize="@dimen/_16ssp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <include
+                    android:id="@+id/include_selection_city"
+                    layout="@layout/include_drop_down_expandable_recycler"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_10sdp"
-                    android:text="@string/caution_if_you_do_not_choose_any_city_all_cities_within_the_selected_governorate_will_be_selected"
-                    android:textColor="@color/text_color_grey"
-                    android:textSize="@dimen/_14ssp" />
+                    />
+
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_view"
+                    android:id="@+id/cities_recycler_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
