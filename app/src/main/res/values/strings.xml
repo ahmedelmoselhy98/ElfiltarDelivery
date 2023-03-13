@@ -211,5 +211,6 @@
     <string name="client_notes">Client Notes</string>
     <string name="sales_process_notes">Sales Process Notes</string>
     <string name="server_error_message">Server error</string>
+    <string name="update">Update</string>
 
 </resources>

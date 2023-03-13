@@ -37,16 +37,16 @@
                     layout="@layout/app_bar"
                     app:title="@{@string/public_notifications}" />
 
-                <TextView
-                    android:id="@+id/tv_delete_notifications"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:layout_marginHorizontal="@dimen/_10sdp"
-                    android:background="@drawable/background_stroke_rectangle_primary"
-                    android:padding="@dimen/_5sdp"
-                    android:text="@string/delete_notifications"
-                    android:textSize="@dimen/_18ssp" />
+
+                <ImageView
+                    android:id="@+id/iv_delete_notifications"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_gravity="center|end"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:src="@drawable/ic_delete_"
+                    app:tint="@color/primary" />
+
             </FrameLayout>
 
             <androidx.core.widget.NestedScrollView

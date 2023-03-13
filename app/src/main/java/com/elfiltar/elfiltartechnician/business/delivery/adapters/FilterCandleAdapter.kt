@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.elfiltar.elfiltartechnician.R
 import com.elfiltar.elfiltartechnician.base.BaseAdapter
 import com.elfiltar.elfiltartechnician.business.delivery.models.FilterCandleModel
+import com.elfiltar.elfiltartechnician.commons.customcomponent.editText.normal.BaseInput
 import com.elfiltar.elfiltartechnician.databinding.ItemLayoutFilterCandleBinding
 
 class FilterCandleAdapter(
@@ -37,10 +38,14 @@ class FilterCandleAdapter(
     }
 
     private fun setUpActions(holder: CustomViewHolder, position: Int) {
-//        holder.binding.etChangeAfter.setOnTextTyping(object :BaseInput.TypingCallback{
-//            override fun onTyping(text: String) {
-//            }
-//        })
+        holder.binding.etChangeAfter.setOnTextTyping(object : BaseInput.TypingCallback {
+            override fun onTyping(text: String) {
+                if (!text.isNullOrEmpty() && text != "0")
+                    holder.binding.ivMore.visibility = View.VISIBLE
+                else holder.binding.ivMore.visibility = View.GONE
+
+            }
+        })
         holder.binding.ivMore.setOnClickListener {
             if (holder.binding.etChangeAfter.text.toString().isNullOrEmpty()) {
                 holder.binding.etChangeAfter.error =
@@ -50,6 +55,7 @@ class FilterCandleAdapter(
             holder.binding.etChangeAfter.error = null
             itemsList[position].change_after = holder.binding.etChangeAfter.text.toString().toInt()
             onWaterCandleOptionsClicked(it, position, itemsList[position])
+            holder.binding.ivMore.visibility = View.GONE
         }
     }
 }

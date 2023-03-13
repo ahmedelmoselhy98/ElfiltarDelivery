@@ -211,5 +211,6 @@
     <string name="client_notes">ملاحظات العميل</string>
     <string name="sales_process_notes">ملاحظات عملية البيع</string>
     <string name="server_error_message">Server error</string>
+    <string name="update">تعديل</string>
 
 </resources>

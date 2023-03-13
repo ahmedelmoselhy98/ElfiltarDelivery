@@ -143,9 +143,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_10sdp"
+                    android:clickable="true"
                     android:drawableStart="@drawable/icon_calendar"
                     android:drawablePadding="@dimen/_8sdp"
                     android:drawableTint="@color/icon_tint_primary"
+                    android:editable="false"
                     android:text="@string/date_of_contract"
                     android:textColor="@color/text_color_black"
                     android:textSize="@dimen/_16ssp" />
@@ -153,9 +155,13 @@
                 <com.elfiltar.elfiltartechnician.commons.customcomponent.textview.DateTextView
                     android:id="@+id/tv_date_of_contract"
                     style="@style/BoxEditTextGrey"
+                    setText="@{item.date_of_contract}"
+                    android:focusable="false"
+                    android:clickable="true"
+                    android:editable="false"
+                    android:focusableInTouchMode="false"
                     android:layout_marginHorizontal="@dimen/_10sdp"
                     android:hint="@string/date_of_contract"
-                    setText="@{item.date_of_contract}"
                     android:inputType="text" />
 
 
@@ -284,8 +290,8 @@
                         android:id="@+id/cb_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:buttonTint="@color/icon_tint_primary" />
+                        android:buttonTint="@color/icon_tint_primary"
+                        android:checked="true" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -293,8 +299,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_10sdp"
-                    android:orientation="vertical"
-                    >
+                    android:orientation="vertical">
 
                     <LinearLayout
                         setViewVisible="@{numberOfStages >=1}"
@@ -555,7 +560,11 @@
                     style="@style/ButtonContainedPrimary"
                     android:layout_marginHorizontal="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:text="@string/add" />
+                    android:focusable="false"
+                    android:clickable="true"
+                    android:editable="false"
+                    android:focusableInTouchMode="false"
+                    android:text="@string/update" />
             </LinearLayout>
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>

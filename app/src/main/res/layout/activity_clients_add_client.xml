@@ -126,6 +126,7 @@
                     android:layout_marginHorizontal="@dimen/_10sdp"
                     android:hint="@string/facebook_link"
                     android:inputType="text" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -141,6 +142,10 @@
                 <com.elfiltar.elfiltartechnician.commons.customcomponent.textview.DateTextView
                     android:id="@+id/tv_date_of_contract"
                     style="@style/BoxEditTextGrey"
+                    android:focusable="false"
+                    android:clickable="true"
+                    android:editable="false"
+                    android:focusableInTouchMode="false"
                     android:layout_marginHorizontal="@dimen/_10sdp"
                     android:hint="@string/date_of_contract"
                     android:inputType="text" />
@@ -267,6 +272,10 @@
                     style="@style/ButtonContainedPrimary"
                     android:layout_marginHorizontal="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_10sdp"
+                    android:focusable="false"
+                    android:clickable="true"
+                    android:editable="false"
+                    android:focusableInTouchMode="false"
                     android:text="@string/add" />
             </LinearLayout>
         </ScrollView>

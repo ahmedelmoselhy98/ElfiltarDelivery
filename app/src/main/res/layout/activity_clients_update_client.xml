@@ -151,6 +151,10 @@
                     style="@style/BoxEditTextGrey"
                     setText="@{item.date_of_contract}"
                     android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:focusable="false"
+                    android:clickable="true"
+                    android:editable="false"
+                    android:focusableInTouchMode="false"
                     android:hint="@string/date_of_contract"
                     android:inputType="text" />
 
@@ -277,7 +281,11 @@
                     style="@style/ButtonContainedPrimary"
                     android:layout_marginHorizontal="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:text="@string/add" />
+                    android:focusable="false"
+                    android:clickable="true"
+                    android:editable="false"
+                    android:focusableInTouchMode="false"
+                    android:text="@string/update" />
             </LinearLayout>
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -37,10 +37,12 @@ class NotificationActivity : BaseActivity() {
     private fun getNotifications() {
         appViewModel.getNotifications {
             if (it.isNullOrEmpty()) {
+                binding.ivDeleteNotifications.visibility = View.GONE
                 binding.recyclerView.visibility = View.GONE
                 binding.tvEmpty.visibility = View.VISIBLE
                 return@getNotifications
             }
+            binding.ivDeleteNotifications.visibility = View.VISIBLE
             binding.tvEmpty.visibility = View.GONE
             dataList.clear()
             dataList.addAll(it)
@@ -53,7 +55,7 @@ class NotificationActivity : BaseActivity() {
         binding.appBar.tvPageTitle.setOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
-        binding.tvDeleteNotifications.setOnClickListener {
+        binding.ivDeleteNotifications.setOnClickListener {
             if (dataList.isNullOrEmpty()) {
                 MyUtils.shoMsg(
                     this,

@@ -72,14 +72,13 @@
                     android:textColor="@color/text_color_white" />
             </LinearLayout>
 
-            <com.google.android.material.button.MaterialButton
+            <ImageView
                 android:id="@+id/iv_more"
-                android:layout_width="@dimen/_50sdp"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:visibility="gone"
                 android:layout_marginHorizontal="@dimen/_5sdp"
-                android:text="@string/ok"
-                android:textColor="@color/white" />
-
+                android:src="@drawable/ic_check_green" />
         </LinearLayout>
     </LinearLayout>
 </layout>

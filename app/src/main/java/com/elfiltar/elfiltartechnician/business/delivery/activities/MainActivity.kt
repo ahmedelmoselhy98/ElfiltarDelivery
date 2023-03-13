@@ -16,6 +16,7 @@ import com.elfiltar.elfiltartechnician.business.general.activities.SplashActivit
 import com.elfiltar.elfiltartechnician.business.general.sheets.LanguageSheet
 import com.elfiltar.elfiltartechnician.business.general.sheets.LogoutDialog
 import com.elfiltar.elfiltartechnician.business.viewmodels.AppViewModel
+import com.elfiltar.elfiltartechnician.commons.helpers.MyUtils
 import com.elfiltar.elfiltartechnician.databinding.ActivityMainBinding
 
 class MainActivity : BaseActivity() {
@@ -131,8 +132,11 @@ class MainActivity : BaseActivity() {
         binding.tvPreviousOrders.setOnClickListener {
             startActivity(Intent(this, PreviousOrdersActivity::class.java))
         }
+        binding.tvDevelopedBy.setOnClickListener {
+            MyUtils.openUrl(this, "https://www.blue-egypt.com/ar ")
+        }
         binding.tvLogout.setOnClickListener {
-           logout()
+            logout()
         }
     }
 

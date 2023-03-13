@@ -137,6 +137,8 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:drawableStart="@drawable/icon_calendar"
                     android:drawablePadding="@dimen/_8sdp"
+                    android:clickable="true"
+                    android:editable="false"
                     android:drawableTint="@color/icon_tint_primary"
                     android:text="@string/date_of_contract"
                     android:textColor="@color/text_color_black"
@@ -145,6 +147,10 @@
                 <com.elfiltar.elfiltartechnician.commons.customcomponent.textview.DateTextView
                     android:id="@+id/tv_date_of_contract"
                     style="@style/BoxEditTextGrey"
+                    android:focusable="false"
+                    android:clickable="true"
+                    android:editable="false"
+                    android:focusableInTouchMode="false"
                     android:layout_marginHorizontal="@dimen/_10sdp"
                     android:hint="@string/date_of_contract"
                     android:inputType="text" />
@@ -543,6 +549,10 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_add"
+                    android:focusable="false"
+                    android:clickable="true"
+                    android:editable="false"
+                    android:focusableInTouchMode="false"
                     style="@style/ButtonContainedPrimary"
                     android:layout_marginHorizontal="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_10sdp"
